@@ -1,7 +1,7 @@
 const OutputGenerator = require('../../lib/output-generator')
 
 describe('OutputGenerator', () => {
-  let map, output
+  let map, generator
 
   beforeEach(() => {
     map = new Map()
@@ -15,64 +15,64 @@ describe('OutputGenerator', () => {
       map.set(key, obj[key])
     }
 
-    output = new OutputGenerator(map)
+    generator = new OutputGenerator(map)
   })
 
   describe('#removeMarkdownFromFiles', () => {
     it('removes markdown from the files and returns the expected map', () => {
-      const actual = output.removeMarkdownFromFiles()
+      const actual = generator.removeMarkdownFromFiles()
       expect(actual).toMatchSnapshot()
     })
   })
 
   describe('#buildWriteGoodResults', () => {
     it('returns the expected result', () => {
-      const noMd = output.removeMarkdownFromFiles()
-      const actual = output.buildWriteGoodResults(noMd)
+      const noMd = generator.removeMarkdownFromFiles()
+      const actual = generator.buildWriteGoodResults(noMd)
       expect(actual).toMatchSnapshot()
     })
   })
 
   describe('#reachConclusion', () => {
     it('returns `failure` if there are any suggestions', () => {
-      const noMd = output.removeMarkdownFromFiles()
-      const results = output.buildWriteGoodResults(noMd)
-      const actual = output.reachConclusion(results)
+      const noMd = generator.removeMarkdownFromFiles()
+      const results = generator.buildWriteGoodResults(noMd)
+      const actual = generator.reachConclusion(results)
       expect(actual).toBe('failure')
     })
 
     it('returns `success` if there are no suggestions', () => {
-      const actual = output.reachConclusion(new Map())
+      const actual = generator.reachConclusion(new Map())
       expect(actual).toBe('success')
     })
   })
 
   describe('#buildSummary', () => {
     it('returns the expected result if the conclusion is `success`', () => {
-      const actual = output.buildSummary('success')
+      const actual = generator.buildSummary('success')
       expect(actual).toBe('No issues have been found, great job!')
     })
 
     it('returns the expected string if there are suggestions', () => {
-      const noMd = output.removeMarkdownFromFiles()
-      const results = output.buildWriteGoodResults(noMd)
-      const actual = output.buildSummary('failure', results)
+      const noMd = generator.removeMarkdownFromFiles()
+      const results = generator.buildWriteGoodResults(noMd)
+      const actual = generator.buildSummary('failure', results)
       expect(actual).toMatchSnapshot()
     })
   })
 
   describe('#buildAnnotations', () => {
     it('returns the expected array of annotations', () => {
-      const noMd = output.removeMarkdownFromFiles()
-      const results = output.buildWriteGoodResults(noMd)
-      const actual = output.buildAnnotations(noMd, results)
+      const noMd = generator.removeMarkdownFromFiles()
+      const results = generator.buildWriteGoodResults(noMd)
+      const actual = generator.buildAnnotations(noMd, results)
       expect(actual).toMatchSnapshot()
     })
   })
 
   describe('#generate', () => {
     it('generates the expected result', () => {
-      const actual = output.generate()
+      const actual = generator.generate()
       expect(actual).toMatchSnapshot()
     })
   })
