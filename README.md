@@ -1,6 +1,6 @@
-# write-good-app
+# [WIP] write-good-app
 
-> A GitHub App built with [Probot](https://probot.github.io) that A Probot App that tells you how to write good
+> A GitHub App built with [Probot](https://probot.github.io) that A Probot App that helps you write good
 
 ## Setup
 
