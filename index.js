@@ -13,7 +13,8 @@ module.exports = app => {
 
     // Get the files in the PR
     const { data: files } = await context.github.pullRequests.getFiles(context.repo({
-      number: pr.number
+      number: pr.number,
+      per_page: 100
     }))
 
     // We only care about .md and .txt files that have been changed or added
