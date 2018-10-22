@@ -19,7 +19,7 @@ Array [
 ]
 `;
 
-exports[`output #buildSummary returns the expected string if there are suggestions 1`] = `"2 suggestions have been found in 1 file"`;
+exports[`output #buildSummary returns the expected string if there are suggestions 1`] = `"**2 suggestions** have been found in **1 file**."`;
 
 exports[`output #buildWriteGoodResults returns the expected result 1`] = `
 Map {
