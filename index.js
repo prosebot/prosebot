@@ -31,7 +31,8 @@ module.exports = app => {
         ref: context.payload.check_suite.head_branch
       }))
 
-      fileMap.set(file.filename, contents)
+      const decoded = Buffer.from(contents.data.content, 'base64').toString('utf8')
+      fileMap.set(file.filename, decoded)
     }))
 
     // Create the generator instance
@@ -43,7 +44,7 @@ module.exports = app => {
     // Let em know whats up by creating a Check Run
     return context.github.checks.create(context.repo({
       name: 'write-good-app',
-      head_sha: context.github.check_suite.head_sha,
+      head_sha: context.payload.check_suite.head_sha,
       head_branch: context.payload.check_suite.head_branch,
       completed_at: new Date().toISOString(),
       conclusion: generator.conclusion,
