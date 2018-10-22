@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`output #buildAnnotations returns the expected array of annotations 1`] = `
+exports[`OutputGenerator #buildAnnotations returns the expected array of annotations 1`] = `
 Array [
   Object {
     "annotation_level": "warning",
@@ -19,9 +19,9 @@ Array [
 ]
 `;
 
-exports[`output #buildSummary returns the expected string if there are suggestions 1`] = `"**2 suggestions** have been found in **1 file**."`;
+exports[`OutputGenerator #buildSummary returns the expected string if there are suggestions 1`] = `"**2 suggestions** have been found in **1 file**."`;
 
-exports[`output #buildWriteGoodResults returns the expected result 1`] = `
+exports[`OutputGenerator #buildWriteGoodResults returns the expected result 1`] = `
 Map {
   "filename.md" => Array [],
   "anotherfile.md" => Array [],
@@ -40,7 +40,7 @@ Map {
 }
 `;
 
-exports[`output #removeMarkdownFromFiles removes markdown from the files and returns the expected map 1`] = `
+exports[`OutputGenerator #removeMarkdownFromFiles removes markdown from the files and returns the expected map 1`] = `
 Map {
   "filename.md" => "This is some text",
   "anotherfile.md" => "this Has some Problems. it sure does jason?",

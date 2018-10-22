@@ -1,6 +1,6 @@
 const OutputGenerator = require('../../lib/output-generator')
 
-describe('output', () => {
+describe('OutputGenerator', () => {
   let map, output
 
   beforeEach(() => {
