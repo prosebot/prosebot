@@ -1,0 +1,51 @@
+{
+  "name": "write-good-app",
+  "version": "1.0.0",
+  "description": "A Probot App that tells you how to write good",
+  "author": "Jason Etcovitch &lt;jasonetco@github.com&gt; (https://github.com/JasonEtco/write-good-app)",
+  "license": "ISC",
+  "repository": "https://github.com/JasonEtco/write-good-app.git",
+  "homepage": "https://github.com/JasonEtco/write-good-app",
+  "bugs": "https://github.com/JasonEtco/write-good-app/issues",
+  "keywords": [
+    "probot",
+    "github",
+    "probot-app"
+  ],
+  "scripts": {
+    "dev": "nodemon",
+    "start": "probot run ./index.js",
+    "lint": "standard --fix",
+    "test": "jest && standard",
+    "test:watch": "jest --watch --notify --notifyMode=change --coverage"
+  },
+  "dependencies": {
+    "probot": "^7.2.0",
+    "remove-markdown": "^0.3.0",
+    "write-good": "^0.13.1"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3",
+    "nodemon": "^1.17.2",
+    "smee-client": "^1.0.2",
+    "standard": "^10.0.3"
+  },
+  "engines": {
+    "node": ">= 8.3.0"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "nodemonConfig": {
+    "exec": "npm start",
+    "watch": [
+      ".env",
+      "."
+    ]
+  }
+}
