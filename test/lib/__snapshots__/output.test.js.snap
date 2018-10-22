@@ -3,15 +3,17 @@
 exports[`output #buildAnnotations returns the expected array of annotations 1`] = `
 Array [
   Object {
+    "annotation_level": "warning",
     "end_line": 1,
+    "message": "\\"So\\" adds no meaning",
     "path": "cats.md",
-    "start_column": 0,
     "start_line": 1,
   },
   Object {
+    "annotation_level": "warning",
     "end_line": 1,
+    "message": "\\"was stolen\\" may be passive voice",
     "path": "cats.md",
-    "start_column": 11,
     "start_line": 1,
   },
 ]

@@ -61,7 +61,7 @@ describe('output', () => {
     })
   })
 
-  describe.only('#buildAnnotations', () => {
+  describe('#buildAnnotations', () => {
     it('returns the expected array of annotations', () => {
       const noMd = output.removeMarkdownFromFiles()
       const results = output.buildWriteGoodResults(noMd)
