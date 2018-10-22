@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`output #buildAnnotations returns the expected array of annotations 1`] = `
+Array [
+  Object {
+    "end_line": 1,
+    "path": "cats.md",
+    "start_column": 0,
+    "start_line": 1,
+  },
+  Object {
+    "end_line": 1,
+    "path": "cats.md",
+    "start_column": 11,
+    "start_line": 1,
+  },
+]
+`;
+
+exports[`output #buildSummary returns the expected string if there are suggestions 1`] = `"2 suggestions have been found in 1 file"`;
+
+exports[`output #buildWriteGoodResults returns the expected result 1`] = `
+Map {
+  "filename.md" => Array [],
+  "anotherfile.md" => Array [],
+  "cats.md" => Array [
+    Object {
+      "index": 0,
+      "offset": 2,
+      "reason": "\\"So\\" adds no meaning",
+    },
+    Object {
+      "index": 11,
+      "offset": 10,
+      "reason": "\\"was stolen\\" may be passive voice",
+    },
+  ],
+}
+`;
+
+exports[`output #removeMarkdownFromFiles removes markdown from the files and returns the expected map 1`] = `
+Map {
+  "filename.md" => "This is some text",
+  "anotherfile.md" => "this Has some Problems. it sure does jason?",
+  "cats.md" => "So the cat was stolen.",
+}
+`;
