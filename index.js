@@ -6,7 +6,6 @@ const OutputGenerator = require('./lib/output-generator')
  */
 module.exports = app => {
   app.on('check_suite.requested', async context => {
-    // 1. Get list of new or modified files ending in .md, .txt
     // Only act on one pull request (for now)
     const pr = context.payload.check_suite.pull_requests[0]
     if (!pr) return
@@ -37,9 +36,11 @@ module.exports = app => {
 
     // Create the generator instance
     const generator = new OutputGenerator(fileMap)
+
     // Generate the output
     const output = generator.generate()
 
+    // Let em know whats up by creating a Check Run
     return context.github.checks.create(context.repo({
       name: 'write-good-app',
       head_sha: context.github.check_suite.head_sha,
