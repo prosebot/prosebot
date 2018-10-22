@@ -69,4 +69,11 @@ describe('OutputGenerator', () => {
       expect(actual).toMatchSnapshot()
     })
   })
+
+  describe('#generate', () => {
+    it('generates the expected result', () => {
+      const actual = output.generate()
+      expect(actual).toMatchSnapshot()
+    })
+  })
 })

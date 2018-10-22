@@ -40,6 +40,29 @@ Map {
 }
 `;
 
+exports[`OutputGenerator #generate generates the expected result 1`] = `
+Object {
+  "annotations": Array [
+    Object {
+      "annotation_level": "warning",
+      "end_line": 1,
+      "message": "\\"So\\" adds no meaning",
+      "path": "cats.md",
+      "start_line": 1,
+    },
+    Object {
+      "annotation_level": "warning",
+      "end_line": 1,
+      "message": "\\"was stolen\\" may be passive voice",
+      "path": "cats.md",
+      "start_line": 1,
+    },
+  ],
+  "summary": "**2 suggestions** have been found in **1 file**.",
+  "title": "write-good-app",
+}
+`;
+
 exports[`OutputGenerator #removeMarkdownFromFiles removes markdown from the files and returns the expected map 1`] = `
 Map {
   "filename.md" => "This is some text",

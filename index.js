@@ -34,7 +34,9 @@ module.exports = app => {
       fileMap.set(file.filename, contents)
     }))
 
+    // Create the generator instance
     const generator = new OutputGenerator(fileMap)
+    // Generate the output
     const output = generator.generate()
 
     return context.github.checks.create(context.repo({
