@@ -7,7 +7,9 @@
 
 ## Usage
 
-This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits).
+This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits). Here's how it looks in action:
+
+<img width="699" alt="image" src="https://user-images.githubusercontent.com/10660468/47381345-ccf44380-d6cd-11e8-9079-f5b7bea04f2c.png">
 
 ### Installation
 
@@ -31,3 +33,10 @@ This Probot App is mostly a wrapper around existing open source libraries. The m
 * [`write-good`](https://github.com/btford/write-good)
 * [`alex`](https://github.com/get-alex/alex)
 * [`node-spellchecker`](https://github.com/atom/node-spellchecker)
+
+### Future work
+
+* Using [Suggested Changes](https://blog.github.com/changelog/2018-10-16-suggested-changes/) to... suggest changes.
+* Work on multiple PRs at a time
+* Nicer annotations
+* More providers? [Open an issue!](https://github.com/JasonEtco/prosebot/issues/new)
