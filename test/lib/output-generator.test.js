@@ -18,25 +18,16 @@ describe('OutputGenerator', () => {
     generator = new OutputGenerator(map)
   })
 
-  describe('#removeMarkdownFromFiles', () => {
+  describe('static#removeMarkdownFromFiles', () => {
     it('removes markdown from the files and returns the expected map', () => {
-      const actual = generator.removeMarkdownFromFiles()
-      expect(actual).toMatchSnapshot()
-    })
-  })
-
-  describe('#buildWriteGoodResults', () => {
-    it('returns the expected result', () => {
-      const noMd = generator.removeMarkdownFromFiles()
-      const actual = generator.buildWriteGoodResults(noMd)
+      const actual = OutputGenerator.removeMarkdownFromFiles(map)
       expect(actual).toMatchSnapshot()
     })
   })
 
   describe('#reachConclusion', () => {
     it('returns `failure` if there are any suggestions', () => {
-      const noMd = generator.removeMarkdownFromFiles()
-      const results = generator.buildWriteGoodResults(noMd)
+      const results = generator.buildAllResults()
       const actual = generator.reachConclusion(results)
       expect(actual).toBe('failure')
     })
@@ -54,8 +45,7 @@ describe('OutputGenerator', () => {
     })
 
     it('returns the expected string if there are suggestions', () => {
-      const noMd = generator.removeMarkdownFromFiles()
-      const results = generator.buildWriteGoodResults(noMd)
+      const results = generator.buildAllResults()
       const actual = generator.buildSummary('failure', results)
       expect(actual).toMatchSnapshot()
     })
@@ -63,9 +53,8 @@ describe('OutputGenerator', () => {
 
   describe('#buildAnnotations', () => {
     it('returns the expected array of annotations', () => {
-      const noMd = generator.removeMarkdownFromFiles()
-      const results = generator.buildWriteGoodResults(noMd)
-      const actual = generator.buildAnnotations(noMd, results)
+      const results = generator.buildAllResults()
+      const actual = generator.buildAnnotations(results)
       expect(actual).toMatchSnapshot()
     })
   })

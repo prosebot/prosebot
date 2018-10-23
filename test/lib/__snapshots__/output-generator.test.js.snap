@@ -21,25 +21,6 @@ Array [
 
 exports[`OutputGenerator #buildSummary returns the expected string if there are suggestions 1`] = `"**2 suggestions** have been found in **1 file**."`;
 
-exports[`OutputGenerator #buildWriteGoodResults returns the expected result 1`] = `
-Map {
-  "filename.md" => Array [],
-  "anotherfile.md" => Array [],
-  "cats.md" => Array [
-    Object {
-      "index": 0,
-      "offset": 2,
-      "reason": "\\"So\\" adds no meaning",
-    },
-    Object {
-      "index": 11,
-      "offset": 10,
-      "reason": "\\"was stolen\\" may be passive voice",
-    },
-  ],
-}
-`;
-
 exports[`OutputGenerator #generate generates the expected result 1`] = `
 Object {
   "annotations": Array [
@@ -63,7 +44,7 @@ Object {
 }
 `;
 
-exports[`OutputGenerator #removeMarkdownFromFiles removes markdown from the files and returns the expected map 1`] = `
+exports[`OutputGenerator static#removeMarkdownFromFiles removes markdown from the files and returns the expected map 1`] = `
 Map {
   "filename.md" => "This is some text",
   "anotherfile.md" => "this Has some Problems. it sure does jason?",
