@@ -69,6 +69,13 @@ describe('OutputGenerator', () => {
       const actual = generator.buildSummary('failure', results)
       expect(actual).toMatchSnapshot()
     })
+
+    it('returns the expected string with zero results', () => {
+      const results = new Map()
+      results.set('filename.md', [])
+      const actual = generator.buildSummary('failure', results)
+      expect(actual).toMatchSnapshot()
+    })
   })
 
   describe('#buildAnnotations', () => {
