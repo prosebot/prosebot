@@ -8,7 +8,8 @@ describe('SpellCheck provider', () => {
 
     const obj = {
       'filename.md': 'iam not a wurd',
-      'anotherfile.md': 'Tenis is a fun sporq'
+      'anotherfile.md': 'Tenis is a fun sporq',
+      'gibberish.md': 'Absdfsdalkjhfthjsdfsdf'
     }
 
     for (const key in obj) {

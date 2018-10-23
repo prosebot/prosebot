@@ -22,5 +22,11 @@ Map {
       "reason": "sporq is misspelled. How about: sport, spore, spoor, spoors, spork",
     },
   ],
+  "gibberish.md" => Array [
+    Object {
+      "line": 1,
+      "reason": "Absdfsdalkjhfthjsdfsdf is misspelled. ",
+    },
+  ],
 }
 `;
