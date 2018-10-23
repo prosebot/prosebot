@@ -1,4 +1,6 @@
-<h1 align="center">🗣✅</h1>
+<p align="center">
+  <img src="https://avatars2.githubusercontent.com/in/19534?s=128&v=4" width="64">
+</p>
 <h3 align="center">Prosebot</h3>
 <p align="center"><a href="https://probot.github.io">Probot App</a> to help you write better on GitHub.<p>
 <p align="center"><a href="https://travis-ci.com/JasonEtco/prosebot"><img src="https://badgen.net/travis/JasonEtco/prosebot" alt="Build Status"></a> <a href="https://codecov.io/gh/JasonEtco/prosebot/"><img src="https://badgen.net/codecov/c/github/JasonEtco/prosebot" alt="Codecov"></a></p>
