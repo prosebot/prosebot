@@ -21,6 +21,8 @@ Array [
 
 exports[`OutputGenerator #buildSummary returns the expected string if there are suggestions 1`] = `"**2 suggestions** have been found in **1 file**."`;
 
+exports[`OutputGenerator #buildSummary returns the expected string if there is just one 1`] = `"**1 suggestion** has been found in **1 file**."`;
+
 exports[`OutputGenerator #generate generates the expected result 1`] = `
 Object {
   "annotations": Array [

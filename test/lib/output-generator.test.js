@@ -62,6 +62,13 @@ describe('OutputGenerator', () => {
       const actual = generator.buildSummary('failure', results)
       expect(actual).toMatchSnapshot()
     })
+
+    it('returns the expected string if there is just one', () => {
+      const results = new Map()
+      results.set('filename.md', [{ line: 1, reason: 'why not' }])
+      const actual = generator.buildSummary('failure', results)
+      expect(actual).toMatchSnapshot()
+    })
   })
 
   describe('#buildAnnotations', () => {
