@@ -9,7 +9,7 @@ describe('SpellCheck provider', () => {
     const obj = {
       'filename.md': 'iam not a wurd',
       'anotherfile.md': 'Tenis is a fun sporq',
-      'gibberish.md': 'Absdfsdalkjhfthjsdfsdf'
+      'gibberish.md': 'AbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdf'
     }
 
     for (const key in obj) {
@@ -31,7 +31,6 @@ describe('SpellCheck provider', () => {
       expect(actual.get('anotherfile.md').some(a => a.reason.includes('How about:'))).toBe(true)
 
       // Gibberish one, shouldn't include any corrections
-      console.log(actual.get('gibberish.md'))
       expect(actual.get('gibberish.md').some(a => a.reason.includes('How about:'))).toBe(false)
     })
   })
