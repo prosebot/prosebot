@@ -23,7 +23,7 @@ A non-exhaustive list of the various checks that are run:
 
 ### Installation
 
-~Visit [the installation page](https://github.com/apps/prosebot) and install the GitHub App on your repositories.~ COMING :soon:
+Visit [the installation page](https://github.com/apps/prosebot) and install the GitHub App on your repositories. That's all there is to it ❤️
 
 ### Configuration
 
