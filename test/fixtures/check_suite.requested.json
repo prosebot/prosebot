@@ -58,10 +58,10 @@
         "type": "User",
         "site_admin": true
       },
-      "name": "write-good-app",
+      "name": "prosebot",
       "description": "A Probot App that helps you write good.",
-      "external_url": "https://github.com/JasonEtco/write-good-app",
-      "html_url": "https://github.com/apps/write-good-app",
+      "external_url": "https://github.com/JasonEtco/prosebot",
+      "html_url": "https://github.com/apps/prosebot",
       "created_at": "2018-10-22T20:28:41Z",
       "updated_at": "2018-10-22T21:49:35Z"
     },

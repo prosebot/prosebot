@@ -27,7 +27,7 @@ module.exports = app => {
     if (filesWeCareAbout.length === 0) {
       // No markdown files or txt files - give 'em a neutral message.
       return context.github.checks.create(context.repo({
-        name: 'write-good-app',
+        name: 'prosebot',
         head_sha: context.payload.check_suite.head_sha,
         head_branch: context.payload.check_suite.head_branch,
         completed_at: new Date().toISOString(),
@@ -64,7 +64,7 @@ module.exports = app => {
 
     // Let em know whats up by creating a Check Run
     return context.github.checks.create(context.repo({
-      name: 'write-good-app',
+      name: 'prosebot',
       head_sha: context.payload.check_suite.head_sha,
       head_branch: context.payload.check_suite.head_branch,
       completed_at: new Date().toISOString(),
