@@ -22,7 +22,16 @@ describe('SpellCheck provider', () => {
   describe('#buildResults', () => {
     it('returns the expected result', () => {
       const actual = provider.buildResults()
-      expect(actual).toMatchSnapshot()
+
+      // Spellcheck bounces the corrections around, so we can't snapshot test
+      expect(actual.size).toBe(3)
+
+      // Ensure we include a corrections string
+      expect(actual.get('filename.md').some(a => a.reason.includes('How about:'))).toBe(true)
+      expect(actual.get('anotherfile.md').some(a => a.reason.includes('How about:'))).toBe(true)
+
+      // Gibberish one, shouldn't include any corrections
+      expect(actual.get('gibberish.md').some(a => a.reason.includes('How about:'))).toBe(false)
     })
   })
 })
