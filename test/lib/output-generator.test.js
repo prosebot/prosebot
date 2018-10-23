@@ -8,7 +8,7 @@ describe('OutputGenerator', () => {
     map = new Map()
     const obj = {
       'filename.md': '# This is some text',
-      'anotherfile.md': 'this **Has** some Problems. it sure does jason?',
+      'anotherfile.md': 'this **Has** some Problems. it sure does Jason?',
       'cats.md': 'So the cat was stolen.'
     }
 

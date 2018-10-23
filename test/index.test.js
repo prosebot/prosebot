@@ -3,6 +3,15 @@ const appFn = require('..')
 
 const payload = require('./fixtures/check_suite.requested.json')
 
+const badText = `## Hello! How are you?
+
+This is dope. So this is a cat.
+
+So is this is so a cat!
+
+We have confirmed his identity.
+`
+
 describe('write-good-app', () => {
   let app, github, event
 
@@ -76,7 +85,7 @@ describe('write-good-app', () => {
     github.repos.getContent = jest.fn(o => {
       if (o.path === '.github/write-good.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
       return Promise.resolve({ data: {
-        content: Buffer.from('So this is a cat.', 'utf8').toString('base64')
+        content: Buffer.from(badText, 'utf8').toString('base64')
       } })
     })
 
