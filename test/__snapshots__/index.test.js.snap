@@ -11,16 +11,16 @@ Object {
       Object {
         "annotation_level": "warning",
         "end_line": 3,
-        "message": "Thhis is misspelled. How about: This, Thais",
+        "message": "Don’t use “dope”, it’s profane",
         "path": "added.md",
         "start_line": 3,
       },
       Object {
         "annotation_level": "warning",
-        "end_line": 3,
-        "message": "doope is misspelled. ",
+        "end_line": 7,
+        "message": "\`his\` may be insensitive, use \`their\`, \`theirs\`, \`them\` instead",
         "path": "added.md",
-        "start_line": 3,
+        "start_line": 7,
       },
       Object {
         "annotation_level": "warning",
@@ -32,16 +32,16 @@ Object {
       Object {
         "annotation_level": "warning",
         "end_line": 3,
-        "message": "Thhis is misspelled. How about: This, Thais",
+        "message": "Don’t use “dope”, it’s profane",
         "path": "modified.md",
         "start_line": 3,
       },
       Object {
         "annotation_level": "warning",
-        "end_line": 3,
-        "message": "doope is misspelled. ",
+        "end_line": 7,
+        "message": "\`his\` may be insensitive, use \`their\`, \`theirs\`, \`them\` instead",
         "path": "modified.md",
-        "start_line": 3,
+        "start_line": 7,
       },
       Object {
         "annotation_level": "warning",

@@ -5,7 +5,7 @@ const payload = require('./fixtures/check_suite.requested.json')
 
 const badText = `## Hello! How are you?
 
-Thhis is doope. So this is a cat.
+This is dope. So this is a cat.
 
 So is this is so a cat!
 
