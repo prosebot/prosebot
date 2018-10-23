@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WriteGood provider #buildResults returns the expected result 1`] = `
+Map {
+  "filename.md" => Array [],
+  "anotherfile.md" => Array [],
+  "cats.md" => Array [
+    Object {
+      "line": 1,
+      "reason": "\\"So\\" adds no meaning",
+    },
+    Object {
+      "line": 1,
+      "reason": "\\"was stolen\\" may be passive voice",
+    },
+  ],
+}
+`;

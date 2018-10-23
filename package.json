@@ -16,12 +16,14 @@
     "dev": "nodemon",
     "start": "probot run ./index.js",
     "lint": "standard --fix",
-    "test": "jest && standard",
+    "test": "jest --coverage && standard",
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
+    "alex": "^6.0.0",
     "probot": "^7.2.0",
     "remove-markdown": "^0.3.0",
+    "spellchecker": "^3.5.0",
     "write-good": "^0.13.1"
   },
   "devDependencies": {
@@ -31,7 +33,7 @@
     "standard": "^10.0.3"
   },
   "engines": {
-    "node": ">= 8.3.0"
+    "node": ">= 10.12.0"
   },
   "standard": {
     "env": [
