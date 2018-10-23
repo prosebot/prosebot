@@ -42,6 +42,13 @@ describe('OutputGenerator', () => {
       const actual = generator.reachConclusion(new Map())
       expect(actual).toBe('success')
     })
+
+    it('returns `success` if there are no suggestions in a real map', () => {
+      const newerMap = new Map()
+      newerMap.set('filename.md', [])
+      const actual = generator.reachConclusion(newerMap)
+      expect(actual).toBe('success')
+    })
   })
 
   describe('#buildSummary', () => {
