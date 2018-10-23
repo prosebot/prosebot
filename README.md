@@ -11,7 +11,14 @@
 
 ### Configuration
 
-:soon:
+There are currently three providers that the app uses to test your text. These can each be disabled, and are all enabled by default. To disable a provider, add a `.github/write-good.yml` file to your repository and set the provider to `false`:
+
+```yaml
+# .github/write-good.yml
+writeGood: true
+alex: true
+spellchecker: true
+```
 
 ### Credits
 
