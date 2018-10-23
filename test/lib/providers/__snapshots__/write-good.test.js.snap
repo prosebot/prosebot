@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WriteGood provider #buildWriteGoodResults returns the expected result 1`] = `
+exports[`WriteGood provider #buildResults returns the expected result 1`] = `
 Map {
   "filename.md" => Array [],
   "anotherfile.md" => Array [],
