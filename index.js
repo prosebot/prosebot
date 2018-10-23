@@ -53,12 +53,14 @@ module.exports = app => {
       const decoded = Buffer.from(contents.data.content, 'base64').toString('utf8')
       fileMap.set(file.filename, decoded)
     }))
+    context.log.debug('Filemap', fileMap)
 
     // Create the generator instance
-    const generator = new OutputGenerator(fileMap, config)
+    const generator = new OutputGenerator(fileMap, config, context.log)
 
     // Generate the output
     const output = generator.generate()
+    context.log.debug('Generator output', output)
 
     // Let em know whats up by creating a Check Run
     return context.github.checks.create(context.repo({

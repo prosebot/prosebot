@@ -2,9 +2,14 @@ const OutputGenerator = require('../../lib/output-generator')
 const defaultConfig = require('../../lib/default-config')
 
 describe('OutputGenerator', () => {
-  let map, generator
+  let map, generator, logger
 
   beforeEach(() => {
+    logger = {
+      debug: jest.fn(),
+      info: jest.fn()
+    }
+
     map = new Map()
     const obj = {
       'filename.md': '# This is some text',
@@ -16,7 +21,7 @@ describe('OutputGenerator', () => {
       map.set(key, obj[key])
     }
 
-    generator = new OutputGenerator(map, defaultConfig)
+    generator = new OutputGenerator(map, defaultConfig, logger)
   })
 
   describe('static#removeMarkdownFromFiles', () => {
