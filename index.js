@@ -41,7 +41,6 @@ module.exports = app => {
 
     // Get the repo's config file
     const config = await context.config('write-good.yml', defaultConfig)
-    console.log(config)
 
     // Prepare a map of files, filename => contents
     const fileMap = new Map()
