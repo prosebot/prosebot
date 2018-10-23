@@ -19,7 +19,30 @@ Array [
 ]
 `;
 
+exports[`OutputGenerator #buildAnnotations skips files that have no results 1`] = `
+Array [
+  Object {
+    "annotation_level": "warning",
+    "end_line": 1,
+    "message": "\\"So\\" adds no meaning",
+    "path": "cats.md",
+    "start_line": 1,
+  },
+  Object {
+    "annotation_level": "warning",
+    "end_line": 1,
+    "message": "\\"was stolen\\" may be passive voice",
+    "path": "cats.md",
+    "start_line": 1,
+  },
+]
+`;
+
 exports[`OutputGenerator #buildSummary returns the expected string if there are suggestions 1`] = `"**2 suggestions** have been found in **1 file**."`;
+
+exports[`OutputGenerator #buildSummary returns the expected string if there is just one 1`] = `"**1 suggestion** has been found in **1 file**."`;
+
+exports[`OutputGenerator #buildSummary returns the expected string with zero results 1`] = `"**0 suggestions** have been found in **0 files**."`;
 
 exports[`OutputGenerator #generate generates the expected result 1`] = `
 Object {

@@ -24,4 +24,20 @@ describe('Alex provider', () => {
       expect(actual).toMatchSnapshot()
     })
   })
+
+  describe('#serializeResults', () => {
+    it('returns a failing annotation_level if the result is `fatal: true`', () => {
+      const actual = provider.serializeReasons([{
+        line: 1,
+        message: 'Hi!',
+        fatal: true
+      }])
+
+      expect(actual).toEqual([{
+        line: 1,
+        reason: 'Hi!',
+        annotation_level: 'failing'
+      }])
+    })
+  })
 })

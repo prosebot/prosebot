@@ -42,6 +42,13 @@ describe('OutputGenerator', () => {
       const actual = generator.reachConclusion(new Map())
       expect(actual).toBe('success')
     })
+
+    it('returns `success` if there are no suggestions in a real map', () => {
+      const newerMap = new Map()
+      newerMap.set('filename.md', [])
+      const actual = generator.reachConclusion(newerMap)
+      expect(actual).toBe('success')
+    })
   })
 
   describe('#buildSummary', () => {
@@ -55,11 +62,32 @@ describe('OutputGenerator', () => {
       const actual = generator.buildSummary('failure', results)
       expect(actual).toMatchSnapshot()
     })
+
+    it('returns the expected string if there is just one', () => {
+      const results = new Map()
+      results.set('filename.md', [{ line: 1, reason: 'why not' }])
+      const actual = generator.buildSummary('failure', results)
+      expect(actual).toMatchSnapshot()
+    })
+
+    it('returns the expected string with zero results', () => {
+      const results = new Map()
+      results.set('filename.md', [])
+      const actual = generator.buildSummary('failure', results)
+      expect(actual).toMatchSnapshot()
+    })
   })
 
   describe('#buildAnnotations', () => {
     it('returns the expected array of annotations', () => {
       const results = generator.buildAllResults()
+      const actual = generator.buildAnnotations(results)
+      expect(actual).toMatchSnapshot()
+    })
+
+    it('skips files that have no results', () => {
+      const results = generator.buildAllResults()
+      results.set('filename.md', [])
       const actual = generator.buildAnnotations(results)
       expect(actual).toMatchSnapshot()
     })

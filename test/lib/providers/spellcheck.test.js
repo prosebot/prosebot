@@ -34,4 +34,12 @@ describe('SpellCheck provider', () => {
       expect(actual.get('gibberish.md').some(a => a.reason.includes('How about:'))).toBe(false)
     })
   })
+
+  describe('#buildReasonString', () => {
+    it('returns the expected string with zero possible corrections', () => {
+      provider.spellchecker.getCorrectionsForMisspelling = jest.fn(() => ([]))
+      const actual = provider.buildResults()
+      expect(actual.get('filename.md')).toMatchSnapshot()
+    })
+  })
 })
