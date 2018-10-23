@@ -5,6 +5,8 @@
 
 ## Usage
 
+This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage.
+
 ### Installation
 
 ~Visit [the installation page](https://github.com/apps/write-good-app) and install the GitHub App on your repositories.~ COMING :soon:
