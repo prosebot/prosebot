@@ -1,23 +1,22 @@
-# [WIP] write-good-app
+<h1 align="center">🗣✅</h1>
+<h3 align="center">Word Good</h3>
+<p align="center"><a href="https://probot.github.io">Probot App</a> to help you write better on GitHub.<p>
+<p align="center"><a href="https://travis-ci.com/JasonEtco/write-good-app"><img src="https://badgen.now.sh/travis/JasonEtco/write-good-app" alt="Build Status"></a> <a href="https://codecov.io/gh/JasonEtco/write-good-app/"><img src="https://badgen.now.sh/codecov/c/github/JasonEtco/write-good-app" alt="Codecov"></a></p>
 
-> A GitHub App built with [Probot](https://probot.github.io) that A Probot App that helps you write good
+## Usage
 
-## Setup
+### Installation
 
-```sh
-# Install dependencies
-npm install
+~Visit [the installation page](https://github.com/apps/write-good-app) and install the GitHub App on your repositories.~ COMING :soon:
 
-# Run the bot
-npm start
-```
+### Configuration
 
-## Contributing
+:soon:
 
-If you have suggestions for how write-good-app could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
+### Credits
 
-For more, check out the [Contributing Guide](CONTRIBUTING.md).
+This Probot App is mostly a wrapper around existing open source libraries. The majority of the work is done by those, and they deserve a ton of thanks:
 
-## License
-
-[ISC](LICENSE) © 2018 Jason Etcovitch &lt;jasonetco@github.com&gt; (https://github.com/JasonEtco/write-good-app)
+* [`write-good`](https://github.com/btford/write-good)
+* [`alex`](https://github.com/get-alex/alex)
+* [`node-spellchecker`](https://github.com/atom/node-spellchecker)
