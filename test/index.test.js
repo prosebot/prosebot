@@ -27,7 +27,7 @@ describe('prosebot', () => {
       },
       repos: {
         getContent: jest.fn(o => {
-          if (o.path === '.github/write-good.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
+          if (o.path === '.github/prosebot.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
           return Promise.resolve({ data: {
             content: Buffer.from('This here is some content!', 'utf8').toString('base64')
           }})
@@ -83,7 +83,7 @@ describe('prosebot', () => {
 
   it('creates a `failing` check run', async () => {
     github.repos.getContent = jest.fn(o => {
-      if (o.path === '.github/write-good.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
+      if (o.path === '.github/prosebot.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
       return Promise.resolve({ data: {
         content: Buffer.from(badText, 'utf8').toString('base64')
       } })
