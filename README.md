@@ -1,7 +1,7 @@
 <h1 align="center">🗣✅</h1>
 <h3 align="center">Word Good</h3>
 <p align="center"><a href="https://probot.github.io">Probot App</a> to help you write better on GitHub.<p>
-<p align="center"><a href="https://travis-ci.com/JasonEtco/write-good-app"><img src="https://badgen.now.sh/travis/JasonEtco/write-good-app" alt="Build Status"></a> <a href="https://codecov.io/gh/JasonEtco/write-good-app/"><img src="https://badgen.now.sh/codecov/c/github/JasonEtco/write-good-app" alt="Codecov"></a></p>
+<p align="center"><a href="https://travis-ci.com/JasonEtco/write-good-app"><img src="https://badgen.net/travis/JasonEtco/write-good-app" alt="Build Status"></a> <a href="https://codecov.io/gh/JasonEtco/write-good-app/"><img src="https://badgen.net/codecov/c/github/JasonEtco/write-good-app" alt="Codecov"></a></p>
 
 ## Usage
 
