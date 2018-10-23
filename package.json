@@ -1,12 +1,12 @@
 {
-  "name": "write-good-app",
+  "name": "prosebot",
   "version": "1.0.0",
   "description": "A Probot App that tells you how to write good",
-  "author": "Jason Etcovitch &lt;jasonetco@github.com&gt; (https://github.com/JasonEtco/write-good-app)",
+  "author": "Jason Etcovitch &lt;jasonetco@github.com&gt; (https://github.com/JasonEtco/prosebot)",
   "license": "ISC",
-  "repository": "https://github.com/JasonEtco/write-good-app.git",
-  "homepage": "https://github.com/JasonEtco/write-good-app",
-  "bugs": "https://github.com/JasonEtco/write-good-app/issues",
+  "repository": "https://github.com/JasonEtco/prosebot.git",
+  "homepage": "https://github.com/JasonEtco/prosebot",
+  "bugs": "https://github.com/JasonEtco/prosebot/issues",
   "keywords": [
     "probot",
     "github",

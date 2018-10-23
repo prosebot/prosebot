@@ -1,7 +1,7 @@
 <h1 align="center">🗣✅</h1>
-<h3 align="center">Word Good</h3>
+<h3 align="center">Prosebot</h3>
 <p align="center"><a href="https://probot.github.io">Probot App</a> to help you write better on GitHub.<p>
-<p align="center"><a href="https://travis-ci.com/JasonEtco/write-good-app"><img src="https://badgen.net/travis/JasonEtco/write-good-app" alt="Build Status"></a> <a href="https://codecov.io/gh/JasonEtco/write-good-app/"><img src="https://badgen.net/codecov/c/github/JasonEtco/write-good-app" alt="Codecov"></a></p>
+<p align="center"><a href="https://travis-ci.com/JasonEtco/prosebot"><img src="https://badgen.net/travis/JasonEtco/prosebot" alt="Build Status"></a> <a href="https://codecov.io/gh/JasonEtco/prosebot/"><img src="https://badgen.net/codecov/c/github/JasonEtco/prosebot" alt="Codecov"></a></p>
 
 ## Usage
 
@@ -9,7 +9,7 @@ This Probot App listens for changes to Markdown files (`.md`) or text files (`.t
 
 ### Installation
 
-~Visit [the installation page](https://github.com/apps/write-good-app) and install the GitHub App on your repositories.~ COMING :soon:
+~Visit [the installation page](https://github.com/apps/prosebot) and install the GitHub App on your repositories.~ COMING :soon:
 
 ### Configuration
 

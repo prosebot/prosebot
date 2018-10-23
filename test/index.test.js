@@ -12,7 +12,7 @@ So is this is so a cat!
 We have confirmed his identity.
 `
 
-describe('write-good-app', () => {
+describe('prosebot', () => {
   let app, github, event
 
   beforeEach(() => {
