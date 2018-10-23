@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`write-good-app creates \`success\` a check run 1`] = `
+Object {
+  "conclusion": "success",
+  "head_branch": "pr",
+  "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
+  "name": "write-good-app",
+  "output": Object {
+    "annotations": Array [],
+    "summary": "No issues have been found, great job!",
+    "title": "No issues have been found!",
+  },
+  "owner": "JasonEtco",
+  "repo": "tests",
+}
+`;

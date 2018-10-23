@@ -32,8 +32,14 @@ describe('write-good-app', () => {
     event = { name: 'check_suite', payload }
   })
 
-  it('creates a check run', async () => {
+  it('creates `success` a check run', async () => {
     await app.receive(event)
     expect(github.checks.create).toHaveBeenCalled()
+
+    const call = github.checks.create.mock.calls[0][0]
+    expect(call.conclusion).toBe('success')
+
+    delete call.completed_at
+    expect(call).toMatchSnapshot()
   })
 })
