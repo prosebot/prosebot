@@ -55,7 +55,7 @@ Object {
 exports[`OutputGenerator static#removeMarkdownFromFiles removes markdown from the files and returns the expected map 1`] = `
 Map {
   "filename.md" => "This is some text",
-  "anotherfile.md" => "this Has some Problems. it sure does jason?",
+  "anotherfile.md" => "this Has some Problems. it sure does Jason?",
   "cats.md" => "So the cat was stolen.",
 }
 `;
