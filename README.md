@@ -5,7 +5,7 @@
 
 ## Usage
 
-This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage.
+This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits).
 
 ### Installation
 
