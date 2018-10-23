@@ -84,6 +84,13 @@ describe('OutputGenerator', () => {
       const actual = generator.buildAnnotations(results)
       expect(actual).toMatchSnapshot()
     })
+
+    it('skips files that have no results', () => {
+      const results = generator.buildAllResults()
+      results.set('filename.md', [])
+      const actual = generator.buildAnnotations(results)
+      expect(actual).toMatchSnapshot()
+    })
   })
 
   describe('#generate', () => {
