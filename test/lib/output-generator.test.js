@@ -65,5 +65,11 @@ describe('OutputGenerator', () => {
       const actual = generator.generate()
       expect(actual).toMatchSnapshot()
     })
+
+    it('only uses the enabled providers', () => {
+      generator.config = { ...generator.config, writeGood: false }
+      const actual = generator.generate()
+      expect(actual).toMatchSnapshot()
+    })
   })
 })
