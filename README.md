@@ -27,10 +27,10 @@ Visit [the installation page](https://github.com/apps/prosebot) and install the 
 
 ### Configuration
 
-There are currently three providers that the app uses to test your text. These can each be disabled, and are all enabled by default. To disable a provider, add a `.github/write-good.yml` file to your repository and set the provider to `false`:
+There are currently three providers that the app uses to test your text. These can each be disabled, and are all enabled by default. To disable a provider, add a `.github/prosebot.yml` file to your repository and set the provider to `false`:
 
 ```yaml
-# .github/write-good.yml
+# .github/prosebot.yml
 writeGood: true
 alex: true
 spellchecker: true
