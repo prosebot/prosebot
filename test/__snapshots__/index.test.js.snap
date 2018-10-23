@@ -24,6 +24,21 @@ Object {
 }
 `;
 
+exports[`write-good-app creates a \`neutral\` check run if there are no files to check 1`] = `
+Object {
+  "conclusion": "neutral",
+  "head_branch": "pr",
+  "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
+  "name": "write-good-app",
+  "output": Object {
+    "summary": "There were no \`.md\` or \`.txt\` files that needed checking.",
+    "title": "No relevant files",
+  },
+  "owner": "JasonEtco",
+  "repo": "tests",
+}
+`;
+
 exports[`write-good-app creates a \`success\` check run 1`] = `
 Object {
   "conclusion": "success",

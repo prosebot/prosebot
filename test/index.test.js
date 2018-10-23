@@ -46,6 +46,18 @@ describe('write-good-app', () => {
     expect(github.checks.create).not.toHaveBeenCalled()
   })
 
+  it('creates a `neutral` check run if there are no files to check', async () => {
+    github.pullRequests.getFiles.mockReturnValueOnce(Promise.resolve({ data: [] }))
+    await app.receive(event)
+    expect(github.checks.create).toHaveBeenCalled()
+
+    const call = github.checks.create.mock.calls[0][0]
+    expect(call.conclusion).toBe('neutral')
+
+    delete call.completed_at
+    expect(call).toMatchSnapshot()
+  })
+
   it('creates a `success` check run', async () => {
     await app.receive(event)
     expect(github.checks.create).toHaveBeenCalled()
