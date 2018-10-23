@@ -4,12 +4,14 @@ exports[`Alex provider #buildResults returns the expected result 1`] = `
 Map {
   "guys.md" => Array [
     Object {
+      "annotation_level": "warning",
       "line": 1,
       "reason": "\`guys\` may be insensitive, use \`people\`, \`persons\`, \`folks\` instead",
     },
   ],
   "he.md" => Array [
     Object {
+      "annotation_level": "warning",
       "line": 1,
       "reason": "\`He\` may be insensitive, use \`They\`, \`It\` instead",
     },
