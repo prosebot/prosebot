@@ -5,13 +5,22 @@
 
 ## Usage
 
+This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits).
+
 ### Installation
 
 ~Visit [the installation page](https://github.com/apps/write-good-app) and install the GitHub App on your repositories.~ COMING :soon:
 
 ### Configuration
 
-:soon:
+There are currently three providers that the app uses to test your text. These can each be disabled, and are all enabled by default. To disable a provider, add a `.github/write-good.yml` file to your repository and set the provider to `false`:
+
+```yaml
+# .github/write-good.yml
+writeGood: true
+alex: true
+spellchecker: true
+```
 
 ### Credits
 

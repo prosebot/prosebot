@@ -1,4 +1,5 @@
 const OutputGenerator = require('../../lib/output-generator')
+const defaultConfig = require('../../lib/default-config')
 
 describe('OutputGenerator', () => {
   let map, generator
@@ -15,7 +16,7 @@ describe('OutputGenerator', () => {
       map.set(key, obj[key])
     }
 
-    generator = new OutputGenerator(map)
+    generator = new OutputGenerator(map, defaultConfig)
   })
 
   describe('static#removeMarkdownFromFiles', () => {
@@ -61,6 +62,12 @@ describe('OutputGenerator', () => {
 
   describe('#generate', () => {
     it('generates the expected result', () => {
+      const actual = generator.generate()
+      expect(actual).toMatchSnapshot()
+    })
+
+    it('only uses the enabled providers', () => {
+      generator.config = { ...generator.config, writeGood: false }
       const actual = generator.generate()
       expect(actual).toMatchSnapshot()
     })

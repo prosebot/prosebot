@@ -1,4 +1,5 @@
 const OutputGenerator = require('./lib/output-generator')
+const defaultConfig = require('./lib/default-config')
 
 /**
  * This is the entry point for your Probot App.
@@ -23,6 +24,25 @@ module.exports = app => {
       return rightFormat && rightStatus
     })
 
+    if (filesWeCareAbout.length === 0) {
+      // No markdown files or txt files - give 'em a neutral message.
+      return context.github.checks.create(context.repo({
+        name: 'write-good-app',
+        head_sha: context.payload.check_suite.head_sha,
+        head_branch: context.payload.check_suite.head_branch,
+        completed_at: new Date().toISOString(),
+        conclusion: 'neutral',
+        output: {
+          title: 'No relevant files',
+          summary: 'There were no `.md` or `.txt` files that needed checking.'
+        }
+      }))
+    }
+
+    // Get the repo's config file
+    const config = await context.config('write-good.yml', defaultConfig)
+    console.log(config)
+
     // Prepare a map of files, filename => contents
     const fileMap = new Map()
     await Promise.all(filesWeCareAbout.map(async file => {
@@ -36,7 +56,7 @@ module.exports = app => {
     }))
 
     // Create the generator instance
-    const generator = new OutputGenerator(fileMap)
+    const generator = new OutputGenerator(fileMap, config)
 
     // Generate the output
     const output = generator.generate()

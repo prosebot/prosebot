@@ -44,6 +44,14 @@ Object {
 }
 `;
 
+exports[`OutputGenerator #generate only uses the enabled providers 1`] = `
+Object {
+  "annotations": Array [],
+  "summary": "No issues have been found, great job!",
+  "title": "No issues have been found!",
+}
+`;
+
 exports[`OutputGenerator static#removeMarkdownFromFiles removes markdown from the files and returns the expected map 1`] = `
 Map {
   "filename.md" => "This is some text",
