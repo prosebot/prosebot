@@ -7,7 +7,19 @@
 
 ## Usage
 
-This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits).
+This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits). Here's how it looks in action:
+
+<p align="center">
+  <img width="697" alt="image" src="https://user-images.githubusercontent.com/10660468/47381659-87844600-d6ce-11e8-8dc1-add68671dc85.png">
+</p>
+
+### What it checks
+
+A non-exhaustive list of the various checks that are run:
+
+* Correct spelling (and provides possible corrections).
+* Use of non-inclusive/profane/offensive language.
+* Various prose-related checks, find the full list [here](https://github.com/btford/write-good#checks).
 
 ### Installation
 
@@ -31,3 +43,10 @@ This Probot App is mostly a wrapper around existing open source libraries. The m
 * [`write-good`](https://github.com/btford/write-good)
 * [`alex`](https://github.com/get-alex/alex)
 * [`node-spellchecker`](https://github.com/atom/node-spellchecker)
+
+### Future work
+
+* Using [Suggested Changes](https://blog.github.com/changelog/2018-10-16-suggested-changes/) to... suggest changes.
+* Work on multiple PRs at a time
+* Nicer annotations
+* More providers? [Open an issue!](https://github.com/JasonEtco/prosebot/issues/new)
