@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WriteGood provider #buildWriteGoodResults returns the expected result 1`] = `
+Map {
+  "filename.md" => Array [],
+  "anotherfile.md" => Array [],
+  "cats.md" => Array [
+    Object {
+      "index": 0,
+      "offset": 2,
+      "reason": "\\"So\\" adds no meaning",
+    },
+    Object {
+      "index": 11,
+      "offset": 10,
+      "reason": "\\"was stolen\\" may be passive voice",
+    },
+  ],
+}
+`;
