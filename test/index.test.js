@@ -17,9 +17,12 @@ describe('write-good-app', () => {
         ] }))
       },
       repos: {
-        getContent: jest.fn(() => Promise.resolve({ data: {
-          content: Buffer.from('This here is some content!', 'utf8').toString('base64')
-        }}))
+        getContent: jest.fn(o => {
+          if (o.path === '.github/write-good.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
+          return Promise.resolve({ data: {
+            content: Buffer.from('This here is some content!', 'utf8').toString('base64')
+          }})
+        })
       },
       checks: {
         create: jest.fn()
@@ -70,9 +73,13 @@ describe('write-good-app', () => {
   })
 
   it('creates a `failing` check run', async () => {
-    github.repos.getContent.mockReturnValueOnce(Promise.resolve({ data: {
-      content: Buffer.from('So this is a cat.', 'utf8').toString('base64')
-    } }))
+    github.repos.getContent = jest.fn(o => {
+      if (o.path === '.github/write-good.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
+      return Promise.resolve({ data: {
+        content: Buffer.from('So this is a cat.', 'utf8').toString('base64')
+      } })
+    })
+
     await app.receive(event)
     expect(github.checks.create).toHaveBeenCalled()
 
