@@ -9,7 +9,17 @@
 
 This Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits). Here's how it looks in action:
 
-<img width="699" alt="image" src="https://user-images.githubusercontent.com/10660468/47381345-ccf44380-d6cd-11e8-9079-f5b7bea04f2c.png">
+<p align="center">
+  <img width="697" alt="image" src="https://user-images.githubusercontent.com/10660468/47381659-87844600-d6ce-11e8-8dc1-add68671dc85.png">
+</p>
+
+### What it checks
+
+A non-exhaustive list of the various checks that are run:
+
+* Correct spelling (and provides possible corrections).
+* Use of non-inclusive/profane/offensive language.
+* Various prose-related checks, find the full list [here](https://github.com/btford/write-good#checks).
 
 ### Installation
 
