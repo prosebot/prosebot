@@ -32,12 +32,26 @@ describe('write-good-app', () => {
     event = { name: 'check_suite', payload }
   })
 
-  it('creates `success` a check run', async () => {
+  it('creates a `success` check run', async () => {
     await app.receive(event)
     expect(github.checks.create).toHaveBeenCalled()
 
     const call = github.checks.create.mock.calls[0][0]
     expect(call.conclusion).toBe('success')
+
+    delete call.completed_at
+    expect(call).toMatchSnapshot()
+  })
+
+  it('creates a `failing` check run', async () => {
+    github.repos.getContent.mockReturnValueOnce(Promise.resolve({ data: {
+      content: Buffer.from('So this is a cat.', 'utf8').toString('base64')
+    } }))
+    await app.receive(event)
+    expect(github.checks.create).toHaveBeenCalled()
+
+    const call = github.checks.create.mock.calls[0][0]
+    expect(call.conclusion).toBe('failure')
 
     delete call.completed_at
     expect(call).toMatchSnapshot()
