@@ -6,13 +6,11 @@ Map {
   "anotherfile.md" => Array [],
   "cats.md" => Array [
     Object {
-      "index": 0,
-      "offset": 2,
+      "line": 1,
       "reason": "\\"So\\" adds no meaning",
     },
     Object {
-      "index": 11,
-      "offset": 10,
+      "line": 1,
       "reason": "\\"was stolen\\" may be passive voice",
     },
   ],
