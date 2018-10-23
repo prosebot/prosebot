@@ -12,7 +12,8 @@ describe('write-good-app', () => {
         getFiles: jest.fn(() => Promise.resolve({ data: [
           { filename: 'added.md', status: 'added' },
           { filename: 'modified.md', status: 'modified' },
-          { filename: 'deleted.md', status: 'deleted' }
+          { filename: 'deleted.md', status: 'deleted' },
+          { filename: 'deleted.not-md', status: 'added' }
         ] }))
       },
       repos: {
@@ -30,6 +31,19 @@ describe('write-good-app', () => {
     app.auth = () => Promise.resolve(github)
 
     event = { name: 'check_suite', payload }
+  })
+
+  it('does not create a check run if there is no PR', async () => {
+    await app.receive({
+      name: event.name,
+      payload: {
+        action: payload.action,
+        check_suite: {
+          pull_requests: []
+        }
+      }
+    })
+    expect(github.checks.create).not.toHaveBeenCalled()
   })
 
   it('creates a `success` check run', async () => {
