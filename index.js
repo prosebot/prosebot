@@ -59,17 +59,6 @@ module.exports = app => {
     const generator = new OutputGenerator(fileMap, config, context.log)
 
     // Generate the output
-    const output = generator.generate()
-    context.log.debug('Generator output', output)
-
-    // Let em know whats up by creating a Check Run
-    return context.github.checks.create(context.repo({
-      name: 'prosebot',
-      head_sha: context.payload.check_suite.head_sha,
-      head_branch: context.payload.check_suite.head_branch,
-      completed_at: new Date().toISOString(),
-      conclusion: generator.conclusion,
-      output
-    }))
+    return generator.buildAllResults(context)
   })
 }
