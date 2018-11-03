@@ -1,76 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`prosebot creates a \`failing\` check run 1`] = `
-Object {
-  "conclusion": "failure",
-  "head_branch": "pr",
-  "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
-  "name": "prosebot",
-  "output": Object {
-    "annotations": Array [
-      Object {
-        "annotation_level": "warning",
-        "end_line": 3,
-        "message": "\\"So\\" adds no meaning",
-        "path": "added.md",
-        "start_line": 3,
-      },
-      Object {
-        "annotation_level": "warning",
-        "end_line": 5,
-        "message": "\\"So\\" adds no meaning",
-        "path": "added.md",
-        "start_line": 5,
-      },
-      Object {
-        "annotation_level": "warning",
-        "end_line": 3,
-        "message": "Don’t use “dope”, it’s profane",
-        "path": "added.md",
-        "start_line": 3,
-      },
-      Object {
-        "annotation_level": "warning",
-        "end_line": 7,
-        "message": "\`his\` may be insensitive, use \`their\`, \`theirs\`, \`them\` instead",
-        "path": "added.md",
-        "start_line": 7,
-      },
-      Object {
-        "annotation_level": "warning",
-        "end_line": 3,
-        "message": "\\"So\\" adds no meaning",
-        "path": "modified.md",
-        "start_line": 3,
-      },
-      Object {
-        "annotation_level": "warning",
-        "end_line": 5,
-        "message": "\\"So\\" adds no meaning",
-        "path": "modified.md",
-        "start_line": 5,
-      },
-      Object {
-        "annotation_level": "warning",
-        "end_line": 3,
-        "message": "Don’t use “dope”, it’s profane",
-        "path": "modified.md",
-        "start_line": 3,
-      },
-      Object {
-        "annotation_level": "warning",
-        "end_line": 7,
-        "message": "\`his\` may be insensitive, use \`their\`, \`theirs\`, \`them\` instead",
-        "path": "modified.md",
-        "start_line": 7,
-      },
-    ],
-    "summary": "**8 suggestions** have been found in **2 files**.",
-    "title": "See suggestions below.",
+exports[`prosebot creates a \`neutral\` check run 1`] = `
+Array [
+  "neutral",
+  "neutral",
+  "success",
+]
+`;
+
+exports[`prosebot creates a \`neutral\` check run 2`] = `
+Array [
+  Object {
+    "completed_at": 123,
+    "conclusion": "neutral",
+    "head_branch": "pr",
+    "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
+    "name": "WriteGood",
+    "output": Object {
+      "annotations": Array [
+        Object {
+          "annotation_level": "warning",
+          "end_line": 3,
+          "message": "\\"So\\" adds no meaning",
+          "path": "added.md",
+          "start_line": 3,
+        },
+        Object {
+          "annotation_level": "warning",
+          "end_line": 5,
+          "message": "\\"So\\" adds no meaning",
+          "path": "added.md",
+          "start_line": 5,
+        },
+        Object {
+          "annotation_level": "warning",
+          "end_line": 3,
+          "message": "\\"So\\" adds no meaning",
+          "path": "modified.md",
+          "start_line": 3,
+        },
+        Object {
+          "annotation_level": "warning",
+          "end_line": 5,
+          "message": "\\"So\\" adds no meaning",
+          "path": "modified.md",
+          "start_line": 5,
+        },
+      ],
+      "summary": "**4 suggestions** have been found in **2 files**.",
+      "title": "WriteGood has some suggestions!",
+    },
+    "owner": "JasonEtco",
+    "repo": "tests",
   },
-  "owner": "JasonEtco",
-  "repo": "tests",
-}
+  Object {
+    "completed_at": 123,
+    "conclusion": "neutral",
+    "head_branch": "pr",
+    "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
+    "name": "Alex",
+    "output": Object {
+      "annotations": Array [
+        Object {
+          "annotation_level": "warning",
+          "end_line": 3,
+          "message": "Don’t use “dope”, it’s profane",
+          "path": "added.md",
+          "start_line": 3,
+        },
+        Object {
+          "annotation_level": "warning",
+          "end_line": 7,
+          "message": "\`his\` may be insensitive, use \`their\`, \`theirs\`, \`them\` instead",
+          "path": "added.md",
+          "start_line": 7,
+        },
+        Object {
+          "annotation_level": "warning",
+          "end_line": 3,
+          "message": "Don’t use “dope”, it’s profane",
+          "path": "modified.md",
+          "start_line": 3,
+        },
+        Object {
+          "annotation_level": "warning",
+          "end_line": 7,
+          "message": "\`his\` may be insensitive, use \`their\`, \`theirs\`, \`them\` instead",
+          "path": "modified.md",
+          "start_line": 7,
+        },
+      ],
+      "summary": "**4 suggestions** have been found in **2 files**.",
+      "title": "Alex has some suggestions!",
+    },
+    "owner": "JasonEtco",
+    "repo": "tests",
+  },
+  Object {
+    "completed_at": 123,
+    "conclusion": "success",
+    "head_branch": "pr",
+    "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
+    "name": "SpellCheck",
+    "output": Object {
+      "annotations": Array [],
+      "summary": "No issues have been found, great job!",
+      "title": "No issues have been found!",
+    },
+    "owner": "JasonEtco",
+    "repo": "tests",
+  },
+]
 `;
 
 exports[`prosebot creates a \`neutral\` check run if there are no files to check 1`] = `
@@ -88,18 +128,57 @@ Object {
 }
 `;
 
-exports[`prosebot creates a \`success\` check run 1`] = `
-Object {
-  "conclusion": "success",
-  "head_branch": "pr",
-  "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
-  "name": "prosebot",
-  "output": Object {
-    "annotations": Array [],
-    "summary": "No issues have been found, great job!",
-    "title": "No issues have been found!",
+exports[`prosebot creates all \`success\` check runs 1`] = `
+Array [
+  "success",
+  "success",
+  "success",
+]
+`;
+
+exports[`prosebot creates all \`success\` check runs 2`] = `
+Array [
+  Object {
+    "completed_at": 123,
+    "conclusion": "success",
+    "head_branch": "pr",
+    "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
+    "name": "WriteGood",
+    "output": Object {
+      "annotations": Array [],
+      "summary": "No issues have been found, great job!",
+      "title": "No issues have been found!",
+    },
+    "owner": "JasonEtco",
+    "repo": "tests",
   },
-  "owner": "JasonEtco",
-  "repo": "tests",
-}
+  Object {
+    "completed_at": 123,
+    "conclusion": "success",
+    "head_branch": "pr",
+    "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
+    "name": "Alex",
+    "output": Object {
+      "annotations": Array [],
+      "summary": "No issues have been found, great job!",
+      "title": "No issues have been found!",
+    },
+    "owner": "JasonEtco",
+    "repo": "tests",
+  },
+  Object {
+    "completed_at": 123,
+    "conclusion": "success",
+    "head_branch": "pr",
+    "head_sha": "296e2e88379d2ca5f211bac7bc25f78dc879236c",
+    "name": "SpellCheck",
+    "output": Object {
+      "annotations": Array [],
+      "summary": "No issues have been found, great job!",
+      "title": "No issues have been found!",
+    },
+    "owner": "JasonEtco",
+    "repo": "tests",
+  },
+]
 `;

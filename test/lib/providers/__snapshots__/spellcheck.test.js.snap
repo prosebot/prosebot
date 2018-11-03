@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SpellCheck provider #buildReasonString returns the expected string with some corrections 1`] = `
+Array [
+  Object {
+    "line": 1,
+    "reason": "\\"iam\\" is misspelled. How about: something, anotherword",
+  },
+  Object {
+    "line": 1,
+    "reason": "\\"wurd\\" is misspelled. How about: something, anotherword",
+  },
+]
+`;
+
 exports[`SpellCheck provider #buildReasonString returns the expected string with zero possible corrections 1`] = `
 Array [
   Object {
@@ -11,4 +24,36 @@ Array [
     "reason": "\\"wurd\\" is misspelled. ",
   },
 ]
+`;
+
+exports[`SpellCheck provider #buildResults returns the expected result 1`] = `
+Map {
+  "filename.md" => Array [
+    Object {
+      "line": 1,
+      "reason": "\\"iam\\" is misspelled. ",
+    },
+    Object {
+      "line": 1,
+      "reason": "\\"wurd\\" is misspelled. ",
+    },
+  ],
+  "anotherfile.md" => Array [
+    Object {
+      "line": 1,
+      "reason": "\\"Tenis\\" is misspelled. ",
+    },
+    Object {
+      "line": 1,
+      "reason": "\\"sporq\\" is misspelled. ",
+    },
+  ],
+  "gibberish.md" => Array [
+    Object {
+      "line": 1,
+      "reason": "\\"AbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdf\\" is misspelled. ",
+    },
+  ],
+  "technical-doc.md" => Array [],
+}
 `;
