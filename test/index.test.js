@@ -70,18 +70,21 @@ describe('prosebot', () => {
     expect(call).toMatchSnapshot()
   })
 
-  it('creates a `success` check run', async () => {
+  it('creates all `success` check runs', async () => {
     await app.receive(event)
     expect(github.checks.create).toHaveBeenCalled()
 
-    const call = github.checks.create.mock.calls[0][0]
-    expect(call.conclusion).toBe('success')
+    const calls = github.checks.create.mock.calls
+    expect(calls.map(call => call[0].conclusion)).toMatchSnapshot()
 
-    delete call.completed_at
-    expect(call).toMatchSnapshot()
+    const withoutTimestamps = calls.map(call => ({
+      ...call[0],
+      completed_at: 123
+    }))
+    expect(withoutTimestamps).toMatchSnapshot()
   })
 
-  it('creates a `failing` check run', async () => {
+  it('creates a `neutral` check run', async () => {
     github.repos.getContent = jest.fn(o => {
       if (o.path === '.github/prosebot.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
       return Promise.resolve({ data: {
@@ -92,10 +95,13 @@ describe('prosebot', () => {
     await app.receive(event)
     expect(github.checks.create).toHaveBeenCalled()
 
-    const call = github.checks.create.mock.calls[0][0]
-    expect(call.conclusion).toBe('failure')
+    const calls = github.checks.create.mock.calls
+    expect(calls.map(call => call[0].conclusion)).toMatchSnapshot()
 
-    delete call.completed_at
-    expect(call).toMatchSnapshot()
+    const withoutTimestamps = calls.map(call => ({
+      ...call[0],
+      completed_at: 123
+    }))
+    expect(withoutTimestamps).toMatchSnapshot()
   })
 })
