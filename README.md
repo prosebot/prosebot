@@ -43,6 +43,7 @@ This Probot App is mostly a wrapper around existing open source libraries. The m
 * [`write-good`](https://github.com/btford/write-good)
 * [`alex`](https://github.com/get-alex/alex)
 * [`node-spellchecker`](https://github.com/atom/node-spellchecker)
+* [`node-markdown-spellcheck`](https://github.com/lukeapage/node-markdown-spellcheck)
 
 ### Future work
 
