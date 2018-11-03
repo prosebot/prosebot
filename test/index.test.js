@@ -104,4 +104,17 @@ describe('prosebot', () => {
     }))
     expect(withoutTimestamps).toMatchSnapshot()
   })
+
+  it('only creates a check run for the enabled providers', async () => {
+    const config = `alex: true\nspellchecker: false\nwriteGood: false`
+    github.repos.getContent = jest.fn(o => {
+      const text = o.path === '.github/prosebot.yml' ? config : badText
+      return Promise.resolve({ data: {
+        content: Buffer.from(text, 'utf8').toString('base64')
+      } })
+    })
+
+    await app.receive(event)
+    expect(github.checks.create).toHaveBeenCalledTimes(1)
+  })
 })
