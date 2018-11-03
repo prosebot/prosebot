@@ -37,5 +37,11 @@ describe('SpellCheck provider', () => {
       const actual = provider.buildResults()
       expect(actual.get('filename.md')).toMatchSnapshot()
     })
+
+    it('returns the expected string with some corrections', () => {
+      provider.spellchecker.getCorrectionsForMisspelling = jest.fn(() => (['something', 'anotherword']))
+      const actual = provider.buildResults()
+      expect(actual.get('filename.md')).toMatchSnapshot()
+    })
   })
 })

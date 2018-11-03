@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SpellCheck provider #buildReasonString returns the expected string with some corrections 1`] = `
+Array [
+  Object {
+    "line": 1,
+    "reason": "\\"iam\\" is misspelled. How about: something, anotherword",
+  },
+  Object {
+    "line": 1,
+    "reason": "\\"wurd\\" is misspelled. How about: something, anotherword",
+  },
+]
+`;
+
 exports[`SpellCheck provider #buildReasonString returns the expected string with zero possible corrections 1`] = `
 Array [
   Object {
