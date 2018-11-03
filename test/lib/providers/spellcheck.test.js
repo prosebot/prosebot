@@ -9,7 +9,8 @@ describe('SpellCheck provider', () => {
     const obj = {
       'filename.md': 'iam not a wurd',
       'anotherfile.md': 'Tenis is a fun sporq',
-      'gibberish.md': 'AbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdf'
+      'gibberish.md': 'AbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdf',
+      'technical-doc.md': 'This is a `config.yml` file. Here is some code: ```js\nconsole.log(pizza_slice)\n```'
     }
 
     for (const key in obj) {
@@ -17,21 +18,16 @@ describe('SpellCheck provider', () => {
     }
 
     provider = new SpellCheck(map)
+
+    // Don't return any corrections, these can change depending on
+    // the environment so snapshots will always fail.
+    provider.spellchecker.getCorrectionsForMisspelling = jest.fn(() => ([]))
   })
 
   describe('#buildResults', () => {
     it('returns the expected result', () => {
       const actual = provider.buildResults()
-
-      // Spellcheck bounces the corrections around, so we can't snapshot test
-      expect(actual.size).toBe(3)
-
-      // Ensure we include a corrections string
-      expect(actual.get('filename.md').some(a => a.reason.includes('How about:'))).toBe(true)
-      expect(actual.get('anotherfile.md').some(a => a.reason.includes('How about:'))).toBe(true)
-
-      // Gibberish one, shouldn't include any corrections
-      expect(actual.get('gibberish.md').some(a => a.reason.includes('How about:'))).toBe(false)
+      expect(actual).toMatchSnapshot()
     })
   })
 

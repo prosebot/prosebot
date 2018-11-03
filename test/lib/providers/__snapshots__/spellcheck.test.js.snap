@@ -12,3 +12,35 @@ Array [
   },
 ]
 `;
+
+exports[`SpellCheck provider #buildResults returns the expected result 1`] = `
+Map {
+  "filename.md" => Array [
+    Object {
+      "line": 1,
+      "reason": "\\"iam\\" is misspelled. ",
+    },
+    Object {
+      "line": 1,
+      "reason": "\\"wurd\\" is misspelled. ",
+    },
+  ],
+  "anotherfile.md" => Array [
+    Object {
+      "line": 1,
+      "reason": "\\"Tenis\\" is misspelled. ",
+    },
+    Object {
+      "line": 1,
+      "reason": "\\"sporq\\" is misspelled. ",
+    },
+  ],
+  "gibberish.md" => Array [
+    Object {
+      "line": 1,
+      "reason": "\\"AbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdf\\" is misspelled. ",
+    },
+  ],
+  "technical-doc.md" => Array [],
+}
+`;
