@@ -66,7 +66,8 @@ describe('OutputGenerator', () => {
     })
 
     it('returns the expected string if there are suggestions', () => {
-      const results = generator.buildAllResults()
+      const results = new Map()
+      results.set('filename.md', [{ line: 1, reason: 'why not' }])
       const actual = generator.buildSummary('failure', results)
       expect(actual).toMatchSnapshot()
     })
@@ -88,14 +89,8 @@ describe('OutputGenerator', () => {
 
   describe('#buildAnnotations', () => {
     it('returns the expected array of annotations', () => {
-      const results = generator.buildAllResults()
-      const actual = generator.buildAnnotations(results)
-      expect(actual).toMatchSnapshot()
-    })
-
-    it('skips files that have no results', () => {
-      const results = generator.buildAllResults()
-      results.set('filename.md', [])
+      const results = new Map()
+      results.set('filename.md', [{ line: 1, reason: 'why not' }])
       const actual = generator.buildAnnotations(results)
       expect(actual).toMatchSnapshot()
     })
