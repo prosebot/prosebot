@@ -32,8 +32,16 @@ describe('OutputGenerator', () => {
   })
 
   describe('#reachConclusion', () => {
-    it('returns `failure` if there are any suggestions', () => {
-      const results = generator.buildAllResults()
+    it('returns `neutral` if there are any suggestions', () => {
+      const results = new Map()
+      results.set('something.md', [{}])
+      const actual = generator.reachConclusion(results)
+      expect(actual).toBe('neutral')
+    })
+
+    it('returns `failure` if there are any failing suggestions', () => {
+      const results = new Map()
+      results.set('something.md', [{ annotation_level: 'failure' }])
       const actual = generator.reachConclusion(results)
       expect(actual).toBe('failure')
     })
@@ -89,19 +97,6 @@ describe('OutputGenerator', () => {
       const results = generator.buildAllResults()
       results.set('filename.md', [])
       const actual = generator.buildAnnotations(results)
-      expect(actual).toMatchSnapshot()
-    })
-  })
-
-  describe('#generate', () => {
-    it('generates the expected result', () => {
-      const actual = generator.generate()
-      expect(actual).toMatchSnapshot()
-    })
-
-    it('only uses the enabled providers', () => {
-      generator.config = { ...generator.config, writeGood: false }
-      const actual = generator.generate()
       expect(actual).toMatchSnapshot()
     })
   })
