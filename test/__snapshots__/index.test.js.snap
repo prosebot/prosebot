@@ -71,7 +71,7 @@ Array [
         Object {
           "annotation_level": "warning",
           "end_line": 7,
-          "message": "\`his\` may be insensitive, use \`their\`, \`theirs\`, \`them\` instead",
+          "message": "\`his\` may be insensitive, when referring to a person, use \`their\`, \`theirs\`, \`them\` instead",
           "path": "added.md",
           "start_line": 7,
         },
@@ -85,7 +85,7 @@ Array [
         Object {
           "annotation_level": "warning",
           "end_line": 7,
-          "message": "\`his\` may be insensitive, use \`their\`, \`theirs\`, \`them\` instead",
+          "message": "\`his\` may be insensitive, when referring to a person, use \`their\`, \`theirs\`, \`them\` instead",
           "path": "modified.md",
           "start_line": 7,
         },
