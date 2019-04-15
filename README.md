@@ -7,7 +7,7 @@
 
 ## Usage
 
-After [installing the GitHub App on your repos](https://github.com/apps/prosebot), this Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits). Here's how it looks in action:
+After [installing the GitHub App on your repos](https://github.com/apps/prosebot), this Probot App listens for changes to Markdown files (`.md`) or text files (`.txt`) in pull requests and runs various checks against them to provide feedback on the English. Currently, the app checks for spelling, prose and inclusive verbiage. This is done by leveraging existing open source libraries, which you can find [listed below](#credits). Here's how it looks in action:
 
 <p align="center">
   <img width="697" alt="image" src="https://user-images.githubusercontent.com/10660468/47381659-87844600-d6ce-11e8-8dc1-add68671dc85.png">
