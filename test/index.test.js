@@ -66,6 +66,7 @@ describe('prosebot', () => {
     const call = github.checks.create.mock.calls[0][0]
     expect(call.conclusion).toBe('neutral')
 
+    delete call.started_at
     delete call.completed_at
     expect(call).toMatchSnapshot()
   })

@@ -7,6 +7,8 @@ const defaultConfig = require('./lib/default-config')
  */
 module.exports = app => {
   app.on('check_suite.requested', async context => {
+    const timeStart = new Date()
+
     // Only act on one pull request (for now)
     const pr = context.payload.check_suite.pull_requests[0]
     if (!pr) return
@@ -30,6 +32,7 @@ module.exports = app => {
         name: 'prosebot',
         head_sha: context.payload.check_suite.head_sha,
         head_branch: context.payload.check_suite.head_branch,
+        started_at: timeStart,
         completed_at: new Date().toISOString(),
         conclusion: 'neutral',
         output: {
