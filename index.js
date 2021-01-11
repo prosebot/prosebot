@@ -51,7 +51,10 @@ module.exports = (app) => {
       }
 
       // Get the repo's config file
-      const config = await context.config("prosebot.yml", defaultConfig);
+      let config = await context.config("prosebot.yml");
+      if (Object.keys(config).length === 0) {
+        config = defaultConfig;
+      }
 
       // Prepare a map of files, filename => contents
       const fileMap = new Map();
@@ -64,8 +67,7 @@ module.exports = (app) => {
             })
           );
 
-          const decoded = Buffer.from(contents.data, "base64").toString("utf8");
-          fileMap.set(file.filename, decoded);
+          fileMap.set(file.filename, contents.data);
         })
       );
       context.log.debug("Filemap", fileMap);

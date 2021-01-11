@@ -80,7 +80,49 @@ describe("prosebot", () => {
     await probot.receive({ name: "pull_request", payload });
   });
 
-  it.skip("creates a `neutral` check run", async () => {});
+  it("only creates a check run for the enabled providers", async () => {
+    expect.assertions(1);
 
-  it.skip("only creates a check run for the enabled providers", async () => {});
+    scope
+      .get("/repos/Codertocat/Hello-World/pulls/2/files")
+      .query(true)
+      .reply(200, [{ filename: "prose-errors.md", status: "added" }])
+      .get("/repos/Codertocat/Hello-World/contents/.github%2Fprosebot.yml")
+      .reply(200, "writeGood: true")
+      .get("/repos/Codertocat/Hello-World/contents/prose-errors.md")
+      .reply(200, badText)
+      .post("/repos/Codertocat/Hello-World/check-runs")
+      .reply(200, (_uri, requestBody) => {
+        requestBody.completed_at = "2021-01-11T21:42:02.486Z";
+        expect(requestBody).toMatchInlineSnapshot(`
+          Object {
+            "completed_at": "2021-01-11T21:42:02.486Z",
+            "conclusion": "neutral",
+            "name": "WriteGood",
+            "output": Object {
+              "annotations": Array [
+                Object {
+                  "annotation_level": "warning",
+                  "end_line": 3,
+                  "message": "\\"So\\" adds no meaning",
+                  "path": "prose-errors.md",
+                  "start_line": 3,
+                },
+                Object {
+                  "annotation_level": "warning",
+                  "end_line": 5,
+                  "message": "\\"So\\" adds no meaning",
+                  "path": "prose-errors.md",
+                  "start_line": 5,
+                },
+              ],
+              "summary": "**2 suggestions** have been found in **1 file**.",
+              "title": "WriteGood has some suggestions!",
+            },
+          }
+        `);
+      });
+
+    await probot.receive({ name: "pull_request", payload });
+  });
 });
