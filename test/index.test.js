@@ -1,16 +1,15 @@
 const nock = require("nock");
 const { Probot, ProbotOctokit } = require("probot");
-const prosebotApp = require("..");
-
 const payload = require("./fixtures/pull_request.opened.json");
+const prosebotApp = require("..");
 
 const badText = `## Hello! How are you?
 
 This is dope. So this is a cat.
 
-So is this is so a cat!
+So is this is so a catt!
 
-We have confirmed his identity.
+We have confirmed his identitty.
 `;
 
 describe("prosebot", () => {
@@ -68,7 +67,10 @@ describe("prosebot", () => {
       .get("/repos/Codertocat/Hello-World/contents/.github%2Fprosebot.yml")
       .reply(200)
       .get("/repos/Codertocat/Hello-World/contents/no-prose-errors.md")
-      .reply(200, "This is great text.")
+      .query(true)
+      .reply(200, {
+        content: Buffer.from("This is great text.").toString("base64"),
+      })
       .post("/repos/Codertocat/Hello-World/check-runs")
       .times(3)
       .reply(200, (_uri, requestBody) => {
@@ -88,9 +90,10 @@ describe("prosebot", () => {
       .query(true)
       .reply(200, [{ filename: "prose-errors.md", status: "added" }])
       .get("/repos/Codertocat/Hello-World/contents/.github%2Fprosebot.yml")
-      .reply(200, "writeGood: true")
+      .reply(200, "spellchecker: true")
       .get("/repos/Codertocat/Hello-World/contents/prose-errors.md")
-      .reply(200, badText)
+      .query(true)
+      .reply(200, { content: Buffer.from(badText).toString("base64") })
       .post("/repos/Codertocat/Hello-World/check-runs")
       .reply(200, (_uri, requestBody) => {
         requestBody.completed_at = "2021-01-11T21:42:02.486Z";
@@ -98,26 +101,28 @@ describe("prosebot", () => {
           Object {
             "completed_at": "2021-01-11T21:42:02.486Z",
             "conclusion": "neutral",
-            "name": "WriteGood",
+            "head_branch": "changes",
+            "head_sha": "ec26c3e57ca3a959ca5aad62de7213c562f8c821",
+            "name": "SpellCheck",
             "output": Object {
               "annotations": Array [
                 Object {
                   "annotation_level": "warning",
-                  "end_line": 3,
-                  "message": "\\"So\\" adds no meaning",
-                  "path": "prose-errors.md",
-                  "start_line": 3,
-                },
-                Object {
-                  "annotation_level": "warning",
                   "end_line": 5,
-                  "message": "\\"So\\" adds no meaning",
+                  "message": "\\"catt\\" is misspelled. How about: cats, cast, Matt, cat, cart, act",
                   "path": "prose-errors.md",
                   "start_line": 5,
                 },
+                Object {
+                  "annotation_level": "warning",
+                  "end_line": 7,
+                  "message": "\\"identitty\\" is misspelled. How about: identity",
+                  "path": "prose-errors.md",
+                  "start_line": 7,
+                },
               ],
               "summary": "**2 suggestions** have been found in **1 file**.",
-              "title": "WriteGood has some suggestions!",
+              "title": "SpellCheck has some suggestions!",
             },
           }
         `);

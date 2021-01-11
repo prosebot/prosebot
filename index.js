@@ -37,8 +37,8 @@ module.exports = (app) => {
         return context.octokit.checks.create(
           context.repo({
             name: "prosebot",
-            head_sha: pr.head_sha,
-            head_branch: pr.head_branch,
+            head_sha: pr.head.sha,
+            head_branch: pr.head.ref,
             completed_at: new Date().toISOString(),
             conclusion: "neutral",
             output: {
@@ -51,8 +51,13 @@ module.exports = (app) => {
       }
 
       // Get the repo's config file
-      let config = await context.config("prosebot.yml");
-      if (Object.keys(config).length === 0) {
+      let config;
+      try {
+        config = await context.config("prosebot.yml");
+        if (Object.keys(config).length === 0) {
+          config = defaultConfig;
+        }
+      } catch {
         config = defaultConfig;
       }
 
@@ -60,14 +65,17 @@ module.exports = (app) => {
       const fileMap = new Map();
       await Promise.all(
         filesWeCareAbout.map(async (file) => {
-          const contents = await context.octokit.repos.getContent(
+          const { data } = await context.octokit.repos.getContent(
             context.repo({
               path: file.filename,
-              ref: pr.head_branch,
+              ref: pr.head.ref,
             })
           );
 
-          fileMap.set(file.filename, contents.data);
+          fileMap.set(
+            file.filename,
+            Buffer.from(data.content, "base64").toString()
+          );
         })
       );
       context.log.debug("Filemap", fileMap);
