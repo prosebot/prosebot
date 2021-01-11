@@ -9,7 +9,7 @@ module.exports = (app) => {
   app.on(
     // ["pull_request.opened, pull_request.reopened", "pull_request.edited"],
     "pull_request",
-    async (context) => {
+    async function prosebot(context) {
       const { pull_request: pr, repository } = context.payload;
       if (!pr) return;
 
@@ -60,13 +60,11 @@ module.exports = (app) => {
           const contents = await context.octokit.repos.getContent(
             context.repo({
               path: file.filename,
-              ref: context.payload.check_suite.head_branch,
+              ref: pr.head_branch,
             })
           );
 
-          const decoded = Buffer.from(contents.data.content, "base64").toString(
-            "utf8"
-          );
+          const decoded = Buffer.from(contents.data, "base64").toString("utf8");
           fileMap.set(file.filename, decoded);
         })
       );

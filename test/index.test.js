@@ -15,6 +15,7 @@ We have confirmed his identity.
 
 describe("prosebot", () => {
   let probot;
+  const scope = nock("https://api.github.com");
 
   beforeEach(() => {
     nock.disableNetConnect();
@@ -37,7 +38,7 @@ describe("prosebot", () => {
   it("creates a `neutral` check run if there are no files to check", async () => {
     expect.assertions(1);
 
-    nock("https://api.github.com")
+    scope
       .get("/repos/Codertocat/Hello-World/pulls/2/files")
       .query(true)
       .reply(200, [{ filename: "foo.js" }])
@@ -57,7 +58,27 @@ describe("prosebot", () => {
     await probot.receive({ name: "pull_request", payload });
   });
 
-  it.skip("creates all `success` check runs", async () => {});
+  it("creates all `success` check runs when there are no prose errors for all enabled providers", async () => {
+    expect.assertions(3);
+
+    scope
+      .get("/repos/Codertocat/Hello-World/pulls/2/files")
+      .query(true)
+      .reply(200, [{ filename: "no-prose-errors.md", status: "added" }])
+      .get("/repos/Codertocat/Hello-World/contents/.github%2Fprosebot.yml")
+      .reply(200)
+      .get("/repos/Codertocat/Hello-World/contents/no-prose-errors.md")
+      .reply(200, "This is great text.")
+      .post("/repos/Codertocat/Hello-World/check-runs")
+      .times(3)
+      .reply(200, (_uri, requestBody) => {
+        expect(requestBody).toMatchObject({
+          conclusion: "success",
+        });
+      });
+
+    await probot.receive({ name: "pull_request", payload });
+  });
 
   it.skip("creates a `neutral` check run", async () => {});
 
