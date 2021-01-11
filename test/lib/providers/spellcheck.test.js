@@ -29,6 +29,7 @@ describe("SpellCheck provider", () => {
   describe("#buildResults", () => {
     it("returns the expected result", () => {
       const actual = provider.buildResults();
+
       expect(actual).toMatchSnapshot();
     });
   });
@@ -36,7 +37,9 @@ describe("SpellCheck provider", () => {
   describe("#buildReasonString", () => {
     it("returns the expected string with zero possible corrections", () => {
       provider.spellchecker.getCorrectionsForMisspelling = jest.fn(() => []);
+
       const actual = provider.buildResults();
+
       expect(actual.get("filename.md")).toMatchSnapshot();
     });
 
@@ -45,7 +48,9 @@ describe("SpellCheck provider", () => {
         "something",
         "anotherword",
       ]);
+
       const actual = provider.buildResults();
+
       expect(actual.get("filename.md")).toMatchSnapshot();
     });
   });

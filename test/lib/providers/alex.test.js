@@ -21,6 +21,7 @@ describe("Alex provider", () => {
   describe("#buildResults", () => {
     it("returns the expected result", () => {
       const actual = provider.buildResults();
+
       expect(actual).toMatchSnapshot();
     });
   });
