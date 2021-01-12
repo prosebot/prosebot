@@ -1,115 +1,115 @@
-const OutputGenerator = require("../../lib/output-generator");
-const defaultConfig = require("../../lib/default-config");
+const OutputGenerator = require('../../lib/output-generator')
+const defaultConfig = require('../../lib/default-config')
 
-describe("OutputGenerator", () => {
-  let map, generator, logger;
+describe('OutputGenerator', () => {
+  let map, generator, logger
 
   beforeEach(() => {
     logger = {
       debug: jest.fn(),
       info: jest.fn(),
-    };
-
-    map = new Map();
-    const obj = {
-      "filename.md": "# This is some text",
-      "anotherfile.md": "this **Has** some Problems. it sure does Jason?",
-      "cats.md": "So the cat was stolen.",
-    };
-
-    for (const key in obj) {
-      map.set(key, obj[key]);
     }
 
-    generator = new OutputGenerator(map, defaultConfig, logger);
-  });
+    map = new Map()
+    const obj = {
+      'filename.md': '# This is some text',
+      'anotherfile.md': 'this **Has** some Problems. it sure does Jason?',
+      'cats.md': 'So the cat was stolen.',
+    }
 
-  describe("static#removeMarkdownFromFiles", () => {
-    it("removes markdown from the files and returns the expected map", () => {
-      const actual = OutputGenerator.removeMarkdownFromFiles(map);
+    for (const key in obj) {
+      map.set(key, obj[key])
+    }
 
-      expect(actual).toMatchSnapshot();
-    });
-  });
+    generator = new OutputGenerator(map, defaultConfig, logger)
+  })
 
-  describe("#reachConclusion", () => {
-    it("returns `neutral` if there are any suggestions", () => {
-      const results = new Map();
-      results.set("something.md", [{}]);
+  describe('static#removeMarkdownFromFiles', () => {
+    it('removes markdown from the files and returns the expected map', () => {
+      const actual = OutputGenerator.removeMarkdownFromFiles(map)
 
-      const actual = generator.reachConclusion(results);
+      expect(actual).toMatchSnapshot()
+    })
+  })
 
-      expect(actual).toBe("neutral");
-    });
+  describe('#reachConclusion', () => {
+    it('returns `neutral` if there are any suggestions', () => {
+      const results = new Map()
+      results.set('something.md', [{}])
 
-    it("returns `failure` if there are any failing suggestions", () => {
-      const results = new Map();
-      results.set("something.md", [{ annotation_level: "failure" }]);
+      const actual = generator.reachConclusion(results)
 
-      const actual = generator.reachConclusion(results);
+      expect(actual).toBe('neutral')
+    })
 
-      expect(actual).toBe("failure");
-    });
+    it('returns `failure` if there are any failing suggestions', () => {
+      const results = new Map()
+      results.set('something.md', [{ annotation_level: 'failure' }])
 
-    it("returns `success` if there are no suggestions", () => {
-      const actual = generator.reachConclusion(new Map());
+      const actual = generator.reachConclusion(results)
 
-      expect(actual).toBe("success");
-    });
+      expect(actual).toBe('failure')
+    })
 
-    it("returns `success` if there are no suggestions in a real map", () => {
-      const newerMap = new Map();
-      newerMap.set("filename.md", []);
+    it('returns `success` if there are no suggestions', () => {
+      const actual = generator.reachConclusion(new Map())
 
-      const actual = generator.reachConclusion(newerMap);
+      expect(actual).toBe('success')
+    })
 
-      expect(actual).toBe("success");
-    });
-  });
+    it('returns `success` if there are no suggestions in a real map', () => {
+      const newerMap = new Map()
+      newerMap.set('filename.md', [])
 
-  describe("#buildSummary", () => {
-    it("returns the expected result if the conclusion is `success`", () => {
-      const actual = generator.buildSummary("success");
+      const actual = generator.reachConclusion(newerMap)
 
-      expect(actual).toBe("No issues have been found, great job!");
-    });
+      expect(actual).toBe('success')
+    })
+  })
 
-    it("returns the expected string if there are suggestions", () => {
-      const results = new Map();
-      results.set("filename.md", [{ line: 1, reason: "why not" }]);
+  describe('#buildSummary', () => {
+    it('returns the expected result if the conclusion is `success`', () => {
+      const actual = generator.buildSummary('success')
 
-      const actual = generator.buildSummary("failure", results);
+      expect(actual).toBe('No issues have been found, great job!')
+    })
 
-      expect(actual).toMatchSnapshot();
-    });
+    it('returns the expected string if there are suggestions', () => {
+      const results = new Map()
+      results.set('filename.md', [{ line: 1, reason: 'why not' }])
 
-    it("returns the expected string if there is just one", () => {
-      const results = new Map();
-      results.set("filename.md", [{ line: 1, reason: "why not" }]);
+      const actual = generator.buildSummary('failure', results)
 
-      const actual = generator.buildSummary("failure", results);
+      expect(actual).toMatchSnapshot()
+    })
 
-      expect(actual).toMatchSnapshot();
-    });
+    it('returns the expected string if there is just one', () => {
+      const results = new Map()
+      results.set('filename.md', [{ line: 1, reason: 'why not' }])
 
-    it("returns the expected string with zero results", () => {
-      const results = new Map();
-      results.set("filename.md", []);
+      const actual = generator.buildSummary('failure', results)
 
-      const actual = generator.buildSummary("failure", results);
+      expect(actual).toMatchSnapshot()
+    })
 
-      expect(actual).toMatchSnapshot();
-    });
-  });
+    it('returns the expected string with zero results', () => {
+      const results = new Map()
+      results.set('filename.md', [])
 
-  describe("#buildAnnotations", () => {
-    it("returns the expected array of annotations", () => {
-      const results = new Map();
-      results.set("filename.md", [{ line: 1, reason: "why not" }]);
+      const actual = generator.buildSummary('failure', results)
 
-      const actual = generator.buildAnnotations(results);
+      expect(actual).toMatchSnapshot()
+    })
+  })
 
-      expect(actual).toMatchSnapshot();
-    });
-  });
-});
+  describe('#buildAnnotations', () => {
+    it('returns the expected array of annotations', () => {
+      const results = new Map()
+      results.set('filename.md', [{ line: 1, reason: 'why not' }])
+
+      const actual = generator.buildAnnotations(results)
+
+      expect(actual).toMatchSnapshot()
+    })
+  })
+})

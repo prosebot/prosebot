@@ -49,5 +49,9 @@
       ".env",
       "."
     ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }

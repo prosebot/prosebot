@@ -1,48 +1,48 @@
-const Alex = require("../../../lib/providers/alex");
+const Alex = require('../../../lib/providers/alex')
 
-describe("Alex provider", () => {
-  let provider;
+describe('Alex provider', () => {
+  let provider
 
   beforeEach(() => {
-    const map = new Map();
+    const map = new Map()
 
     const obj = {
-      "guys.md": "Hey guys how are you",
-      "he.md": "He walked to class.",
-    };
-
-    for (const key in obj) {
-      map.set(key, obj[key]);
+      'guys.md': 'Hey guys how are you',
+      'he.md': 'He walked to class.',
     }
 
-    provider = new Alex(map);
-  });
+    for (const key in obj) {
+      map.set(key, obj[key])
+    }
 
-  describe("#buildResults", () => {
-    it("returns the expected result", () => {
-      const actual = provider.buildResults();
+    provider = new Alex(map)
+  })
 
-      expect(actual).toMatchSnapshot();
-    });
-  });
+  describe('#buildResults', () => {
+    it('returns the expected result', () => {
+      const actual = provider.buildResults()
 
-  describe("#serializeResults", () => {
-    it("returns a failing annotation_level if the result is `fatal: true`", () => {
+      expect(actual).toMatchSnapshot()
+    })
+  })
+
+  describe('#serializeResults', () => {
+    it('returns a failing annotation_level if the result is `fatal: true`', () => {
       const actual = provider.serializeReasons([
         {
           line: 1,
-          message: "Hi!",
+          message: 'Hi!',
           fatal: true,
         },
-      ]);
+      ])
 
       expect(actual).toEqual([
         {
           line: 1,
-          reason: "Hi!",
-          annotation_level: "failing",
+          reason: 'Hi!',
+          annotation_level: 'failing',
         },
-      ]);
-    });
-  });
-});
+      ])
+    })
+  })
+})
