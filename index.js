@@ -11,14 +11,11 @@ module.exports = (app) => {
     if (!pr) return;
 
     // Get the files in the PR
-    const { data: files } = await context.octokit.request(
-      `GET /repos/${repository.full_name}/pulls/${pr.number}/files`,
-      {
-        owner: repository.owner.login,
-        repo: repository.name,
-        pull_number: pr.number,
-      }
-    );
+    const { data: files } = await context.octokit.pulls.listFiles({
+      owner: repository.owner.login,
+      repo: repository.name,
+      pull_number: pr.number,
+    });
 
     // We only care about .md and .txt files that have been changed or added
     const filesWeCareAbout = files.filter((file) => {
