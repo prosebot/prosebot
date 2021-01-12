@@ -7,9 +7,9 @@ const badText = `## Hello! How are you?
 
 This is dope. So this is a cat.
 
-So is this is so a catt!
+So is this is so a cat!
 
-We have confirmed his identitty.
+We have confirmed his iidentity.
 `
 
 describe('prosebot', () => {
@@ -108,20 +108,13 @@ describe('prosebot', () => {
               "annotations": Array [
                 Object {
                   "annotation_level": "warning",
-                  "end_line": 5,
-                  "message": "\\"catt\\" is misspelled. How about: cats, cast, Matt, cat, cart, act",
-                  "path": "prose-errors.md",
-                  "start_line": 5,
-                },
-                Object {
-                  "annotation_level": "warning",
                   "end_line": 7,
-                  "message": "\\"identitty\\" is misspelled. How about: identity",
+                  "message": "\\"iidentity\\" is misspelled. How about: identity",
                   "path": "prose-errors.md",
                   "start_line": 7,
                 },
               ],
-              "summary": "**2 suggestions** have been found in **1 file**.",
+              "summary": "**1 suggestion** has been found in **1 file**.",
               "title": "SpellCheck has some suggestions!",
             },
           }
