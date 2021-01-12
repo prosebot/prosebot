@@ -6462,7 +6462,7 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.7.tgz#e9c18a410e5ed7e12442a549fbd8afa767038d65"
   integrity sha512-U+MTEOO0AiDzxwFvoa4JVnMV6mZlJKk2sBLt90s7G0Gd0Mlknc7kxEn3nuDPNZRta7O2uy8oLcZLVT+4sqNZHQ==
 
-spellchecker@^3.5.0:
+spellchecker@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/spellchecker/-/spellchecker-3.7.1.tgz#3c1b316318c1edc4f1239959fe6081efca4363df"
   integrity sha512-j36QRZrekxPXy58fo2B/Le3GzHryLv9Zq2Hqz907+JmUBCP35tJlwwhCo4n1lwisBDK40IFHqEHPUe5gwUkpwA==
