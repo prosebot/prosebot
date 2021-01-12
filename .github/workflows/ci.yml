@@ -8,14 +8,13 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - run: npm ci
-    - run: npm test
-    - name: codecov
-      run: npx codecov
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - uses: actions/checkout@v2
+      - run: yarn
+      - run: yarn test
+      - name: codecov
+        run: npx codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

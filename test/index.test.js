@@ -1,7 +1,7 @@
-const { Application } = require('probot')
-const appFn = require('..')
-
-const payload = require('./fixtures/check_suite.requested.json')
+const nock = require('nock')
+const { Probot, ProbotOctokit } = require('probot')
+const payload = require('./fixtures/pull_request.opened.json')
+const prosebotApp = require('..')
 
 const badText = `## Hello! How are you?
 
@@ -9,112 +9,118 @@ This is dope. So this is a cat.
 
 So is this is so a cat!
 
-We have confirmed his identity.
+We have confirmed his iidentity.
 `
 
 describe('prosebot', () => {
-  let app, github, event
+  let probot
+  const scope = nock('https://api.github.com')
 
   beforeEach(() => {
-    github = {
-      pullRequests: {
-        getFiles: jest.fn(() => Promise.resolve({ data: [
-          { filename: 'added.md', status: 'added' },
-          { filename: 'modified.md', status: 'modified' },
-          { filename: 'deleted.md', status: 'deleted' },
-          { filename: 'deleted.not-md', status: 'added' }
-        ] }))
-      },
-      repos: {
-        getContent: jest.fn(o => {
-          if (o.path === '.github/prosebot.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
-          return Promise.resolve({ data: {
-            content: Buffer.from('This here is some content!', 'utf8').toString('base64')
-          }})
-        })
-      },
-      checks: {
-        create: jest.fn()
-      }
-    }
+    nock.disableNetConnect()
 
-    app = new Application()
-    app.load(appFn)
-    app.auth = () => Promise.resolve(github)
-
-    event = { name: 'check_suite', payload }
+    probot = new Probot({
+      githubToken: 'test',
+      Octokit: ProbotOctokit.defaults({
+        retry: { enabled: false },
+        throttle: { enabled: false },
+      }),
+    })
+    prosebotApp(probot)
   })
 
-  it('does not create a check run if there is no PR', async () => {
-    await app.receive({
-      name: event.name,
-      payload: {
-        action: payload.action,
-        check_suite: {
-          pull_requests: []
-        }
-      }
-    })
-    expect(github.checks.create).not.toHaveBeenCalled()
+  afterEach(() => {
+    nock.cleanAll()
+    nock.enableNetConnect()
   })
 
   it('creates a `neutral` check run if there are no files to check', async () => {
-    github.pullRequests.getFiles.mockReturnValueOnce(Promise.resolve({ data: [] }))
-    await app.receive(event)
-    expect(github.checks.create).toHaveBeenCalled()
+    expect.assertions(1)
 
-    const call = github.checks.create.mock.calls[0][0]
-    expect(call.conclusion).toBe('neutral')
+    scope
+      .get('/repos/Codertocat/Hello-World/pulls/2/files')
+      .query(true)
+      .reply(200, [{ filename: 'foo.js' }])
+      .post('/repos/Codertocat/Hello-World/check-runs')
+      .reply(200, (_uri, requestBody) => {
+        expect(requestBody).toMatchObject({
+          name: 'prosebot',
+          conclusion: 'neutral',
+          output: {
+            title: 'No relevant files',
+            summary:
+              'There were no `.md` or `.txt` files that needed checking.',
+          },
+        })
+      })
 
-    delete call.completed_at
-    expect(call).toMatchSnapshot()
+    await probot.receive({ name: 'pull_request', payload })
   })
 
-  it('creates all `success` check runs', async () => {
-    await app.receive(event)
-    expect(github.checks.create).toHaveBeenCalled()
+  it('creates all `success` check runs when there are no prose errors for all enabled providers', async () => {
+    expect.assertions(3)
 
-    const calls = github.checks.create.mock.calls
-    expect(calls.map(call => call[0].conclusion)).toMatchSnapshot()
+    scope
+      .get('/repos/Codertocat/Hello-World/pulls/2/files')
+      .query(true)
+      .reply(200, [{ filename: 'no-prose-errors.md', status: 'added' }])
+      .get('/repos/Codertocat/Hello-World/contents/.github%2Fprosebot.yml')
+      .reply(200)
+      .get('/repos/Codertocat/Hello-World/contents/no-prose-errors.md')
+      .query(true)
+      .reply(200, {
+        content: Buffer.from('This is great text.').toString('base64'),
+      })
+      .post('/repos/Codertocat/Hello-World/check-runs')
+      .times(3)
+      .reply(200, (_uri, requestBody) => {
+        expect(requestBody).toMatchObject({
+          conclusion: 'success',
+        })
+      })
 
-    const withoutTimestamps = calls.map(call => ({
-      ...call[0],
-      completed_at: 123
-    }))
-    expect(withoutTimestamps).toMatchSnapshot()
-  })
-
-  it('creates a `neutral` check run', async () => {
-    github.repos.getContent = jest.fn(o => {
-      if (o.path === '.github/prosebot.yml') throw { code: 404 } // eslint-disable-line no-throw-literal
-      return Promise.resolve({ data: {
-        content: Buffer.from(badText, 'utf8').toString('base64')
-      } })
-    })
-
-    await app.receive(event)
-    expect(github.checks.create).toHaveBeenCalled()
-
-    const calls = github.checks.create.mock.calls
-    expect(calls.map(call => call[0].conclusion)).toMatchSnapshot()
-
-    const withoutTimestamps = calls.map(call => ({
-      ...call[0],
-      completed_at: 123
-    }))
-    expect(withoutTimestamps).toMatchSnapshot()
+    await probot.receive({ name: 'pull_request', payload })
   })
 
   it('only creates a check run for the enabled providers', async () => {
-    const config = `alex: true\nspellchecker: false\nwriteGood: false`
-    github.repos.getContent = jest.fn(o => {
-      const text = o.path === '.github/prosebot.yml' ? config : badText
-      return Promise.resolve({ data: {
-        content: Buffer.from(text, 'utf8').toString('base64')
-      } })
-    })
+    expect.assertions(1)
 
-    await app.receive(event)
-    expect(github.checks.create).toHaveBeenCalledTimes(1)
+    scope
+      .get('/repos/Codertocat/Hello-World/pulls/2/files')
+      .query(true)
+      .reply(200, [{ filename: 'prose-errors.md', status: 'added' }])
+      .get('/repos/Codertocat/Hello-World/contents/.github%2Fprosebot.yml')
+      .reply(200, 'spellchecker: true')
+      .get('/repos/Codertocat/Hello-World/contents/prose-errors.md')
+      .query(true)
+      .reply(200, { content: Buffer.from(badText).toString('base64') })
+      .post('/repos/Codertocat/Hello-World/check-runs')
+      .reply(200, (_uri, requestBody) => {
+        requestBody.completed_at = '2021-01-11T21:42:02.486Z'
+        expect(requestBody).toMatchInlineSnapshot(`
+          Object {
+            "completed_at": "2021-01-11T21:42:02.486Z",
+            "conclusion": "neutral",
+            "head_branch": "changes",
+            "head_sha": "ec26c3e57ca3a959ca5aad62de7213c562f8c821",
+            "name": "SpellCheck",
+            "output": Object {
+              "annotations": Array [
+                Object {
+                  "annotation_level": "warning",
+                  "end_line": 7,
+                  "message": "\\"iidentity\\" is misspelled. How about: identity",
+                  "path": "prose-errors.md",
+                  "start_line": 7,
+                },
+              ],
+              "summary": "**1 suggestion** has been found in **1 file**.",
+              "title": "SpellCheck has some suggestions!",
+            },
+          }
+        `)
+      })
+
+    await probot.receive({ name: 'pull_request', payload })
   })
 })

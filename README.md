@@ -17,9 +17,9 @@ After [installing the GitHub App on your repos](https://github.com/apps/prosebot
 
 A non-exhaustive list of the various checks that are run:
 
-* Correct spelling (and provides possible corrections).
-* Use of non-inclusive/profane/offensive language.
-* Various prose-related checks, find the full list [here](https://github.com/btford/write-good#checks).
+- Correct spelling (and provides possible corrections).
+- Use of non-inclusive/profane/offensive language.
+- Various prose-related checks, find the full list [here](https://github.com/btford/write-good#checks).
 
 ### Installation
 
@@ -40,14 +40,14 @@ spellchecker: true
 
 This Probot App is mostly a wrapper around existing open source libraries. The majority of the work is done by those, and they deserve a ton of thanks:
 
-* [`write-good`](https://github.com/btford/write-good)
-* [`alex`](https://github.com/get-alex/alex)
-* [`node-spellchecker`](https://github.com/atom/node-spellchecker)
-* [`node-markdown-spellcheck`](https://github.com/lukeapage/node-markdown-spellcheck)
+- [`write-good`](https://github.com/btford/write-good)
+- [`alex`](https://github.com/get-alex/alex)
+- [`node-spellchecker`](https://github.com/atom/node-spellchecker)
+- [`node-markdown-spellcheck`](https://github.com/lukeapage/node-markdown-spellcheck)
 
 ### Future work
 
-* Using [Suggested Changes](https://blog.github.com/changelog/2018-10-16-suggested-changes/) to... suggest changes.
-* Work on multiple PRs at a time
-* Nicer annotations
-* More providers? [Open an issue!](https://github.com/JasonEtco/prosebot/issues/new)
+- Using [Suggested Changes](https://blog.github.com/changelog/2018-10-16-suggested-changes/) to... suggest changes.
+- Work on multiple PRs at a time
+- Nicer annotations
+- More providers? [Open an issue!](https://github.com/JasonEtco/prosebot/issues/new)

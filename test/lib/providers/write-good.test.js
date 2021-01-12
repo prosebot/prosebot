@@ -9,7 +9,7 @@ describe('WriteGood provider', () => {
     const obj = {
       'filename.md': '# This is some text',
       'anotherfile.md': 'this **Has** some Problems. it sure does jason?',
-      'cats.md': 'So the cat was stolen.'
+      'cats.md': 'So the cat was stolen.',
     }
 
     for (const key in obj) {
@@ -22,6 +22,7 @@ describe('WriteGood provider', () => {
   describe('#buildResults', () => {
     it('returns the expected result', () => {
       const actual = provider.buildResults()
+
       expect(actual).toMatchSnapshot()
     })
   })
