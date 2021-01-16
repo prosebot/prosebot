@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "alex": "^9.1.0",
-    "@prosebot/markdown-spellcheck": "^1.3.1",
+    "@prosebot/markdown-spellcheck": "github:prosebot/node-markdown-spellcheck",
     "probot": "^11.0.1",
     "remove-markdown": "^0.3.0",
     "write-good": "^1.0.4"
