@@ -4,11 +4,11 @@ exports[`SpellCheck provider #buildReasonString returns the expected string with
 Array [
   Object {
     "line": 1,
-    "reason": "\\"iam\\" is misspelled. How about: something, anotherword",
+    "reason": "\\"iam\\" is misspelled. How about: correctly, spelled, words",
   },
   Object {
     "line": 1,
-    "reason": "\\"wurd\\" is misspelled. How about: something, anotherword",
+    "reason": "\\"wurd\\" is misspelled. How about: correctly, spelled, words",
   },
 ]
 `;
@@ -26,32 +26,32 @@ Array [
 ]
 `;
 
-exports[`SpellCheck provider #buildResults returns the expected result 1`] = `
+exports[`SpellCheck provider #buildResults creates the file map with appropriate reasons 1`] = `
 Map {
   "filename.md" => Array [
     Object {
       "line": 1,
-      "reason": "\\"iam\\" is misspelled. ",
+      "reason": "\\"wurd\\" is misspelled. How about: correctly, spelled, words",
     },
     Object {
       "line": 1,
-      "reason": "\\"wurd\\" is misspelled. ",
+      "reason": "\\"iam\\" is misspelled. How about: correctly, spelled, words",
     },
   ],
   "anotherfile.md" => Array [
     Object {
       "line": 1,
-      "reason": "\\"Tenis\\" is misspelled. ",
+      "reason": "\\"Tenis\\" is misspelled. How about: correctly, spelled, words",
     },
     Object {
       "line": 1,
-      "reason": "\\"sporq\\" is misspelled. ",
+      "reason": "\\"sporq\\" is misspelled. How about: correctly, spelled, words",
     },
   ],
   "gibberish.md" => Array [
     Object {
       "line": 1,
-      "reason": "\\"AbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdf\\" is misspelled. ",
+      "reason": "\\"AbsdfsdalkjhfthjsdfsdfAbsdfsdalkjhfthjsdfsdfAbsdfs\\" is misspelled. How about: correctly, spelled, words",
     },
   ],
   "technical-doc.md" => Array [],

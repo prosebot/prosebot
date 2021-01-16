@@ -109,7 +109,7 @@ describe('prosebot', () => {
                 Object {
                   "annotation_level": "warning",
                   "end_line": 7,
-                  "message": "\\"iidentity\\" is misspelled. How about: identity",
+                  "message": "\\"iidentity\\" is misspelled. How about: identity, i identity, identikit, identify, entity",
                   "path": "prose-errors.md",
                   "start_line": 7,
                 },
